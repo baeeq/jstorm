@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.client.spout;
+package com.alibaba.jstorm.client.spout;
 
 import java.util.List;
 
