@@ -25,103 +25,111 @@ public class Nimbus {
 
   public interface Iface {
 
-    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift.TException;
+    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException;
 
-    public void killTopology(String name) throws NotAliveException, org.apache.thrift.TException;
+    public void submitTopologyWithOpts(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException;
 
-    public void killTopologyWithOpts(String name, KillOptions options) throws NotAliveException, org.apache.thrift.TException;
+    public void killTopology(String name) throws NotAliveException, org.apache.thrift7.TException;
 
-    public void activate(String name) throws NotAliveException, org.apache.thrift.TException;
+    public void killTopologyWithOpts(String name, KillOptions options) throws NotAliveException, org.apache.thrift7.TException;
 
-    public void deactivate(String name) throws NotAliveException, org.apache.thrift.TException;
+    public void activate(String name) throws NotAliveException, org.apache.thrift7.TException;
 
-    public void rebalance(String name, RebalanceOptions options) throws NotAliveException, org.apache.thrift.TException;
+    public void deactivate(String name) throws NotAliveException, org.apache.thrift7.TException;
 
-    public String beginFileUpload() throws org.apache.thrift.TException;
+    public void rebalance(String name, RebalanceOptions options) throws NotAliveException, InvalidTopologyException, org.apache.thrift7.TException;
 
-    public void uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift.TException;
+    public String beginFileUpload() throws org.apache.thrift7.TException;
 
-    public void finishFileUpload(String location) throws org.apache.thrift.TException;
+    public void uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift7.TException;
 
-    public String beginFileDownload(String file) throws org.apache.thrift.TException;
+    public void finishFileUpload(String location) throws org.apache.thrift7.TException;
 
-    public ByteBuffer downloadChunk(String id) throws org.apache.thrift.TException;
+    public String beginFileDownload(String file) throws org.apache.thrift7.TException;
 
-    public ClusterSummary getClusterInfo() throws org.apache.thrift.TException;
+    public ByteBuffer downloadChunk(String id) throws org.apache.thrift7.TException;
 
-    public TopologyInfo getTopologyInfo(String id) throws NotAliveException, org.apache.thrift.TException;
+    public String getNimbusConf() throws org.apache.thrift7.TException;
 
-    public SupervisorWorkers getSupervisorWorkers(String host) throws NotAliveException, org.apache.thrift.TException;
+    public ClusterSummary getClusterInfo() throws org.apache.thrift7.TException;
 
-    public String getTopologyConf(String id) throws NotAliveException, org.apache.thrift.TException;
+    public TopologyInfo getTopologyInfo(String id) throws NotAliveException, org.apache.thrift7.TException;
 
-    public StormTopology getTopology(String id) throws NotAliveException, org.apache.thrift.TException;
+    public String getTopologyConf(String id) throws NotAliveException, org.apache.thrift7.TException;
+
+    public StormTopology getTopology(String id) throws NotAliveException, org.apache.thrift7.TException;
+
+    public StormTopology getUserTopology(String id) throws NotAliveException, org.apache.thrift7.TException;
 
   }
 
   public interface AsyncIface {
 
-    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.submitTopology_call> resultHandler) throws org.apache.thrift.TException;
+    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.submitTopology_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void killTopology(String name, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.killTopology_call> resultHandler) throws org.apache.thrift.TException;
+    public void submitTopologyWithOpts(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.submitTopologyWithOpts_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void killTopologyWithOpts(String name, KillOptions options, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.killTopologyWithOpts_call> resultHandler) throws org.apache.thrift.TException;
+    public void killTopology(String name, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.killTopology_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void activate(String name, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.activate_call> resultHandler) throws org.apache.thrift.TException;
+    public void killTopologyWithOpts(String name, KillOptions options, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.killTopologyWithOpts_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void deactivate(String name, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.deactivate_call> resultHandler) throws org.apache.thrift.TException;
+    public void activate(String name, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.activate_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void rebalance(String name, RebalanceOptions options, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.rebalance_call> resultHandler) throws org.apache.thrift.TException;
+    public void deactivate(String name, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.deactivate_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void beginFileUpload(org.apache.thrift.async.AsyncMethodCallback<AsyncClient.beginFileUpload_call> resultHandler) throws org.apache.thrift.TException;
+    public void rebalance(String name, RebalanceOptions options, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.rebalance_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void uploadChunk(String location, ByteBuffer chunk, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.uploadChunk_call> resultHandler) throws org.apache.thrift.TException;
+    public void beginFileUpload(org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.beginFileUpload_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void finishFileUpload(String location, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.finishFileUpload_call> resultHandler) throws org.apache.thrift.TException;
+    public void uploadChunk(String location, ByteBuffer chunk, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.uploadChunk_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void beginFileDownload(String file, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.beginFileDownload_call> resultHandler) throws org.apache.thrift.TException;
+    public void finishFileUpload(String location, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.finishFileUpload_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void downloadChunk(String id, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.downloadChunk_call> resultHandler) throws org.apache.thrift.TException;
+    public void beginFileDownload(String file, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.beginFileDownload_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void getClusterInfo(org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getClusterInfo_call> resultHandler) throws org.apache.thrift.TException;
+    public void downloadChunk(String id, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.downloadChunk_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void getTopologyInfo(String id, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getTopologyInfo_call> resultHandler) throws org.apache.thrift.TException;
+    public void getNimbusConf(org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getNimbusConf_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void getSupervisorWorkers(String host, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getSupervisorWorkers_call> resultHandler) throws org.apache.thrift.TException;
+    public void getClusterInfo(org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getClusterInfo_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void getTopologyConf(String id, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getTopologyConf_call> resultHandler) throws org.apache.thrift.TException;
+    public void getTopologyInfo(String id, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getTopologyInfo_call> resultHandler) throws org.apache.thrift7.TException;
 
-    public void getTopology(String id, org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getTopology_call> resultHandler) throws org.apache.thrift.TException;
+    public void getTopologyConf(String id, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getTopologyConf_call> resultHandler) throws org.apache.thrift7.TException;
+
+    public void getTopology(String id, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getTopology_call> resultHandler) throws org.apache.thrift7.TException;
+
+    public void getUserTopology(String id, org.apache.thrift7.async.AsyncMethodCallback<AsyncClient.getUserTopology_call> resultHandler) throws org.apache.thrift7.TException;
 
   }
 
-  public static class Client extends org.apache.thrift.TServiceClient implements Iface {
-    public static class Factory implements org.apache.thrift.TServiceClientFactory<Client> {
+  public static class Client extends org.apache.thrift7.TServiceClient implements Iface {
+    public static class Factory implements org.apache.thrift7.TServiceClientFactory<Client> {
       public Factory() {}
-      public Client getClient(org.apache.thrift.protocol.TProtocol prot) {
+      public Client getClient(org.apache.thrift7.protocol.TProtocol prot) {
         return new Client(prot);
       }
-      public Client getClient(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {
+      public Client getClient(org.apache.thrift7.protocol.TProtocol iprot, org.apache.thrift7.protocol.TProtocol oprot) {
         return new Client(iprot, oprot);
       }
     }
 
-    public Client(org.apache.thrift.protocol.TProtocol prot)
+    public Client(org.apache.thrift7.protocol.TProtocol prot)
     {
       super(prot, prot);
     }
 
-    public Client(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {
+    public Client(org.apache.thrift7.protocol.TProtocol iprot, org.apache.thrift7.protocol.TProtocol oprot) {
       super(iprot, oprot);
     }
 
-    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift.TException
+    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException
     {
       send_submitTopology(name, uploadedJarLocation, jsonConf, topology);
       recv_submitTopology();
     }
 
-    public void send_submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws org.apache.thrift.TException
+    public void send_submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology) throws org.apache.thrift7.TException
     {
       submitTopology_args args = new submitTopology_args();
       args.set_name(name);
@@ -131,7 +139,7 @@ public class Nimbus {
       sendBase("submitTopology", args);
     }
 
-    public void recv_submitTopology() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift.TException
+    public void recv_submitTopology() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException
     {
       submitTopology_result result = new submitTopology_result();
       receiveBase(result, "submitTopology");
@@ -144,20 +152,50 @@ public class Nimbus {
       return;
     }
 
-    public void killTopology(String name) throws NotAliveException, org.apache.thrift.TException
+    public void submitTopologyWithOpts(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options) throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException
+    {
+      send_submitTopologyWithOpts(name, uploadedJarLocation, jsonConf, topology, options);
+      recv_submitTopologyWithOpts();
+    }
+
+    public void send_submitTopologyWithOpts(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options) throws org.apache.thrift7.TException
+    {
+      submitTopologyWithOpts_args args = new submitTopologyWithOpts_args();
+      args.set_name(name);
+      args.set_uploadedJarLocation(uploadedJarLocation);
+      args.set_jsonConf(jsonConf);
+      args.set_topology(topology);
+      args.set_options(options);
+      sendBase("submitTopologyWithOpts", args);
+    }
+
+    public void recv_submitTopologyWithOpts() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException
+    {
+      submitTopologyWithOpts_result result = new submitTopologyWithOpts_result();
+      receiveBase(result, "submitTopologyWithOpts");
+      if (result.e != null) {
+        throw result.e;
+      }
+      if (result.ite != null) {
+        throw result.ite;
+      }
+      return;
+    }
+
+    public void killTopology(String name) throws NotAliveException, org.apache.thrift7.TException
     {
       send_killTopology(name);
       recv_killTopology();
     }
 
-    public void send_killTopology(String name) throws org.apache.thrift.TException
+    public void send_killTopology(String name) throws org.apache.thrift7.TException
     {
       killTopology_args args = new killTopology_args();
       args.set_name(name);
       sendBase("killTopology", args);
     }
 
-    public void recv_killTopology() throws NotAliveException, org.apache.thrift.TException
+    public void recv_killTopology() throws NotAliveException, org.apache.thrift7.TException
     {
       killTopology_result result = new killTopology_result();
       receiveBase(result, "killTopology");
@@ -167,13 +205,13 @@ public class Nimbus {
       return;
     }
 
-    public void killTopologyWithOpts(String name, KillOptions options) throws NotAliveException, org.apache.thrift.TException
+    public void killTopologyWithOpts(String name, KillOptions options) throws NotAliveException, org.apache.thrift7.TException
     {
       send_killTopologyWithOpts(name, options);
       recv_killTopologyWithOpts();
     }
 
-    public void send_killTopologyWithOpts(String name, KillOptions options) throws org.apache.thrift.TException
+    public void send_killTopologyWithOpts(String name, KillOptions options) throws org.apache.thrift7.TException
     {
       killTopologyWithOpts_args args = new killTopologyWithOpts_args();
       args.set_name(name);
@@ -181,7 +219,7 @@ public class Nimbus {
       sendBase("killTopologyWithOpts", args);
     }
 
-    public void recv_killTopologyWithOpts() throws NotAliveException, org.apache.thrift.TException
+    public void recv_killTopologyWithOpts() throws NotAliveException, org.apache.thrift7.TException
     {
       killTopologyWithOpts_result result = new killTopologyWithOpts_result();
       receiveBase(result, "killTopologyWithOpts");
@@ -191,20 +229,20 @@ public class Nimbus {
       return;
     }
 
-    public void activate(String name) throws NotAliveException, org.apache.thrift.TException
+    public void activate(String name) throws NotAliveException, org.apache.thrift7.TException
     {
       send_activate(name);
       recv_activate();
     }
 
-    public void send_activate(String name) throws org.apache.thrift.TException
+    public void send_activate(String name) throws org.apache.thrift7.TException
     {
       activate_args args = new activate_args();
       args.set_name(name);
       sendBase("activate", args);
     }
 
-    public void recv_activate() throws NotAliveException, org.apache.thrift.TException
+    public void recv_activate() throws NotAliveException, org.apache.thrift7.TException
     {
       activate_result result = new activate_result();
       receiveBase(result, "activate");
@@ -214,20 +252,20 @@ public class Nimbus {
       return;
     }
 
-    public void deactivate(String name) throws NotAliveException, org.apache.thrift.TException
+    public void deactivate(String name) throws NotAliveException, org.apache.thrift7.TException
     {
       send_deactivate(name);
       recv_deactivate();
     }
 
-    public void send_deactivate(String name) throws org.apache.thrift.TException
+    public void send_deactivate(String name) throws org.apache.thrift7.TException
     {
       deactivate_args args = new deactivate_args();
       args.set_name(name);
       sendBase("deactivate", args);
     }
 
-    public void recv_deactivate() throws NotAliveException, org.apache.thrift.TException
+    public void recv_deactivate() throws NotAliveException, org.apache.thrift7.TException
     {
       deactivate_result result = new deactivate_result();
       receiveBase(result, "deactivate");
@@ -237,13 +275,13 @@ public class Nimbus {
       return;
     }
 
-    public void rebalance(String name, RebalanceOptions options) throws NotAliveException, org.apache.thrift.TException
+    public void rebalance(String name, RebalanceOptions options) throws NotAliveException, InvalidTopologyException, org.apache.thrift7.TException
     {
       send_rebalance(name, options);
       recv_rebalance();
     }
 
-    public void send_rebalance(String name, RebalanceOptions options) throws org.apache.thrift.TException
+    public void send_rebalance(String name, RebalanceOptions options) throws org.apache.thrift7.TException
     {
       rebalance_args args = new rebalance_args();
       args.set_name(name);
@@ -251,45 +289,48 @@ public class Nimbus {
       sendBase("rebalance", args);
     }
 
-    public void recv_rebalance() throws NotAliveException, org.apache.thrift.TException
+    public void recv_rebalance() throws NotAliveException, InvalidTopologyException, org.apache.thrift7.TException
     {
       rebalance_result result = new rebalance_result();
       receiveBase(result, "rebalance");
       if (result.e != null) {
         throw result.e;
       }
+      if (result.ite != null) {
+        throw result.ite;
+      }
       return;
     }
 
-    public String beginFileUpload() throws org.apache.thrift.TException
+    public String beginFileUpload() throws org.apache.thrift7.TException
     {
       send_beginFileUpload();
       return recv_beginFileUpload();
     }
 
-    public void send_beginFileUpload() throws org.apache.thrift.TException
+    public void send_beginFileUpload() throws org.apache.thrift7.TException
     {
       beginFileUpload_args args = new beginFileUpload_args();
       sendBase("beginFileUpload", args);
     }
 
-    public String recv_beginFileUpload() throws org.apache.thrift.TException
+    public String recv_beginFileUpload() throws org.apache.thrift7.TException
     {
       beginFileUpload_result result = new beginFileUpload_result();
       receiveBase(result, "beginFileUpload");
       if (result.is_set_success()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "beginFileUpload failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "beginFileUpload failed: unknown result");
     }
 
-    public void uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift.TException
+    public void uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift7.TException
     {
       send_uploadChunk(location, chunk);
       recv_uploadChunk();
     }
 
-    public void send_uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift.TException
+    public void send_uploadChunk(String location, ByteBuffer chunk) throws org.apache.thrift7.TException
     {
       uploadChunk_args args = new uploadChunk_args();
       args.set_location(location);
@@ -297,115 +338,137 @@ public class Nimbus {
       sendBase("uploadChunk", args);
     }
 
-    public void recv_uploadChunk() throws org.apache.thrift.TException
+    public void recv_uploadChunk() throws org.apache.thrift7.TException
     {
       uploadChunk_result result = new uploadChunk_result();
       receiveBase(result, "uploadChunk");
       return;
     }
 
-    public void finishFileUpload(String location) throws org.apache.thrift.TException
+    public void finishFileUpload(String location) throws org.apache.thrift7.TException
     {
       send_finishFileUpload(location);
       recv_finishFileUpload();
     }
 
-    public void send_finishFileUpload(String location) throws org.apache.thrift.TException
+    public void send_finishFileUpload(String location) throws org.apache.thrift7.TException
     {
       finishFileUpload_args args = new finishFileUpload_args();
       args.set_location(location);
       sendBase("finishFileUpload", args);
     }
 
-    public void recv_finishFileUpload() throws org.apache.thrift.TException
+    public void recv_finishFileUpload() throws org.apache.thrift7.TException
     {
       finishFileUpload_result result = new finishFileUpload_result();
       receiveBase(result, "finishFileUpload");
       return;
     }
 
-    public String beginFileDownload(String file) throws org.apache.thrift.TException
+    public String beginFileDownload(String file) throws org.apache.thrift7.TException
     {
       send_beginFileDownload(file);
       return recv_beginFileDownload();
     }
 
-    public void send_beginFileDownload(String file) throws org.apache.thrift.TException
+    public void send_beginFileDownload(String file) throws org.apache.thrift7.TException
     {
       beginFileDownload_args args = new beginFileDownload_args();
       args.set_file(file);
       sendBase("beginFileDownload", args);
     }
 
-    public String recv_beginFileDownload() throws org.apache.thrift.TException
+    public String recv_beginFileDownload() throws org.apache.thrift7.TException
     {
       beginFileDownload_result result = new beginFileDownload_result();
       receiveBase(result, "beginFileDownload");
       if (result.is_set_success()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "beginFileDownload failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "beginFileDownload failed: unknown result");
     }
 
-    public ByteBuffer downloadChunk(String id) throws org.apache.thrift.TException
+    public ByteBuffer downloadChunk(String id) throws org.apache.thrift7.TException
     {
       send_downloadChunk(id);
       return recv_downloadChunk();
     }
 
-    public void send_downloadChunk(String id) throws org.apache.thrift.TException
+    public void send_downloadChunk(String id) throws org.apache.thrift7.TException
     {
       downloadChunk_args args = new downloadChunk_args();
       args.set_id(id);
       sendBase("downloadChunk", args);
     }
 
-    public ByteBuffer recv_downloadChunk() throws org.apache.thrift.TException
+    public ByteBuffer recv_downloadChunk() throws org.apache.thrift7.TException
     {
       downloadChunk_result result = new downloadChunk_result();
       receiveBase(result, "downloadChunk");
       if (result.is_set_success()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "downloadChunk failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "downloadChunk failed: unknown result");
     }
 
-    public ClusterSummary getClusterInfo() throws org.apache.thrift.TException
+    public String getNimbusConf() throws org.apache.thrift7.TException
+    {
+      send_getNimbusConf();
+      return recv_getNimbusConf();
+    }
+
+    public void send_getNimbusConf() throws org.apache.thrift7.TException
+    {
+      getNimbusConf_args args = new getNimbusConf_args();
+      sendBase("getNimbusConf", args);
+    }
+
+    public String recv_getNimbusConf() throws org.apache.thrift7.TException
+    {
+      getNimbusConf_result result = new getNimbusConf_result();
+      receiveBase(result, "getNimbusConf");
+      if (result.is_set_success()) {
+        return result.success;
+      }
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getNimbusConf failed: unknown result");
+    }
+
+    public ClusterSummary getClusterInfo() throws org.apache.thrift7.TException
     {
       send_getClusterInfo();
       return recv_getClusterInfo();
     }
 
-    public void send_getClusterInfo() throws org.apache.thrift.TException
+    public void send_getClusterInfo() throws org.apache.thrift7.TException
     {
       getClusterInfo_args args = new getClusterInfo_args();
       sendBase("getClusterInfo", args);
     }
 
-    public ClusterSummary recv_getClusterInfo() throws org.apache.thrift.TException
+    public ClusterSummary recv_getClusterInfo() throws org.apache.thrift7.TException
     {
       getClusterInfo_result result = new getClusterInfo_result();
       receiveBase(result, "getClusterInfo");
       if (result.is_set_success()) {
         return result.success;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getClusterInfo failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getClusterInfo failed: unknown result");
     }
 
-    public TopologyInfo getTopologyInfo(String id) throws NotAliveException, org.apache.thrift.TException
+    public TopologyInfo getTopologyInfo(String id) throws NotAliveException, org.apache.thrift7.TException
     {
       send_getTopologyInfo(id);
       return recv_getTopologyInfo();
     }
 
-    public void send_getTopologyInfo(String id) throws org.apache.thrift.TException
+    public void send_getTopologyInfo(String id) throws org.apache.thrift7.TException
     {
       getTopologyInfo_args args = new getTopologyInfo_args();
       args.set_id(id);
       sendBase("getTopologyInfo", args);
     }
 
-    public TopologyInfo recv_getTopologyInfo() throws NotAliveException, org.apache.thrift.TException
+    public TopologyInfo recv_getTopologyInfo() throws NotAliveException, org.apache.thrift7.TException
     {
       getTopologyInfo_result result = new getTopologyInfo_result();
       receiveBase(result, "getTopologyInfo");
@@ -415,49 +478,23 @@ public class Nimbus {
       if (result.e != null) {
         throw result.e;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getTopologyInfo failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getTopologyInfo failed: unknown result");
     }
 
-    public SupervisorWorkers getSupervisorWorkers(String host) throws NotAliveException, org.apache.thrift.TException
-    {
-      send_getSupervisorWorkers(host);
-      return recv_getSupervisorWorkers();
-    }
-
-    public void send_getSupervisorWorkers(String host) throws org.apache.thrift.TException
-    {
-      getSupervisorWorkers_args args = new getSupervisorWorkers_args();
-      args.set_host(host);
-      sendBase("getSupervisorWorkers", args);
-    }
-
-    public SupervisorWorkers recv_getSupervisorWorkers() throws NotAliveException, org.apache.thrift.TException
-    {
-      getSupervisorWorkers_result result = new getSupervisorWorkers_result();
-      receiveBase(result, "getSupervisorWorkers");
-      if (result.is_set_success()) {
-        return result.success;
-      }
-      if (result.e != null) {
-        throw result.e;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getSupervisorWorkers failed: unknown result");
-    }
-
-    public String getTopologyConf(String id) throws NotAliveException, org.apache.thrift.TException
+    public String getTopologyConf(String id) throws NotAliveException, org.apache.thrift7.TException
     {
       send_getTopologyConf(id);
       return recv_getTopologyConf();
     }
 
-    public void send_getTopologyConf(String id) throws org.apache.thrift.TException
+    public void send_getTopologyConf(String id) throws org.apache.thrift7.TException
     {
       getTopologyConf_args args = new getTopologyConf_args();
       args.set_id(id);
       sendBase("getTopologyConf", args);
     }
 
-    public String recv_getTopologyConf() throws NotAliveException, org.apache.thrift.TException
+    public String recv_getTopologyConf() throws NotAliveException, org.apache.thrift7.TException
     {
       getTopologyConf_result result = new getTopologyConf_result();
       receiveBase(result, "getTopologyConf");
@@ -467,23 +504,23 @@ public class Nimbus {
       if (result.e != null) {
         throw result.e;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getTopologyConf failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getTopologyConf failed: unknown result");
     }
 
-    public StormTopology getTopology(String id) throws NotAliveException, org.apache.thrift.TException
+    public StormTopology getTopology(String id) throws NotAliveException, org.apache.thrift7.TException
     {
       send_getTopology(id);
       return recv_getTopology();
     }
 
-    public void send_getTopology(String id) throws org.apache.thrift.TException
+    public void send_getTopology(String id) throws org.apache.thrift7.TException
     {
       getTopology_args args = new getTopology_args();
       args.set_id(id);
       sendBase("getTopology", args);
     }
 
-    public StormTopology recv_getTopology() throws NotAliveException, org.apache.thrift.TException
+    public StormTopology recv_getTopology() throws NotAliveException, org.apache.thrift7.TException
     {
       getTopology_result result = new getTopology_result();
       receiveBase(result, "getTopology");
@@ -493,40 +530,66 @@ public class Nimbus {
       if (result.e != null) {
         throw result.e;
       }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getTopology failed: unknown result");
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getTopology failed: unknown result");
+    }
+
+    public StormTopology getUserTopology(String id) throws NotAliveException, org.apache.thrift7.TException
+    {
+      send_getUserTopology(id);
+      return recv_getUserTopology();
+    }
+
+    public void send_getUserTopology(String id) throws org.apache.thrift7.TException
+    {
+      getUserTopology_args args = new getUserTopology_args();
+      args.set_id(id);
+      sendBase("getUserTopology", args);
+    }
+
+    public StormTopology recv_getUserTopology() throws NotAliveException, org.apache.thrift7.TException
+    {
+      getUserTopology_result result = new getUserTopology_result();
+      receiveBase(result, "getUserTopology");
+      if (result.is_set_success()) {
+        return result.success;
+      }
+      if (result.e != null) {
+        throw result.e;
+      }
+      throw new org.apache.thrift7.TApplicationException(org.apache.thrift7.TApplicationException.MISSING_RESULT, "getUserTopology failed: unknown result");
     }
 
   }
-  public static class AsyncClient extends org.apache.thrift.async.TAsyncClient implements AsyncIface {
-    public static class Factory implements org.apache.thrift.async.TAsyncClientFactory<AsyncClient> {
-      private org.apache.thrift.async.TAsyncClientManager clientManager;
-      private org.apache.thrift.protocol.TProtocolFactory protocolFactory;
-      public Factory(org.apache.thrift.async.TAsyncClientManager clientManager, org.apache.thrift.protocol.TProtocolFactory protocolFactory) {
+  public static class AsyncClient extends org.apache.thrift7.async.TAsyncClient implements AsyncIface {
+    public static class Factory implements org.apache.thrift7.async.TAsyncClientFactory<AsyncClient> {
+      private org.apache.thrift7.async.TAsyncClientManager clientManager;
+      private org.apache.thrift7.protocol.TProtocolFactory protocolFactory;
+      public Factory(org.apache.thrift7.async.TAsyncClientManager clientManager, org.apache.thrift7.protocol.TProtocolFactory protocolFactory) {
         this.clientManager = clientManager;
         this.protocolFactory = protocolFactory;
       }
-      public AsyncClient getAsyncClient(org.apache.thrift.transport.TNonblockingTransport transport) {
+      public AsyncClient getAsyncClient(org.apache.thrift7.transport.TNonblockingTransport transport) {
         return new AsyncClient(protocolFactory, clientManager, transport);
       }
     }
 
-    public AsyncClient(org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.async.TAsyncClientManager clientManager, org.apache.thrift.transport.TNonblockingTransport transport) {
+    public AsyncClient(org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.async.TAsyncClientManager clientManager, org.apache.thrift7.transport.TNonblockingTransport transport) {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift.async.AsyncMethodCallback<submitTopology_call> resultHandler) throws org.apache.thrift.TException {
+    public void submitTopology(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift7.async.AsyncMethodCallback<submitTopology_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       submitTopology_call method_call = new submitTopology_call(name, uploadedJarLocation, jsonConf, topology, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class submitTopology_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class submitTopology_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
       private String uploadedJarLocation;
       private String jsonConf;
       private StormTopology topology;
-      public submitTopology_call(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift.async.AsyncMethodCallback<submitTopology_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public submitTopology_call(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, org.apache.thrift7.async.AsyncMethodCallback<submitTopology_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
         this.uploadedJarLocation = uploadedJarLocation;
@@ -534,8 +597,8 @@ public class Nimbus {
         this.topology = topology;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("submitTopology", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("submitTopology", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         submitTopology_args args = new submitTopology_args();
         args.set_name(name);
         args.set_uploadedJarLocation(uploadedJarLocation);
@@ -545,66 +608,110 @@ public class Nimbus {
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_submitTopology();
       }
     }
 
-    public void killTopology(String name, org.apache.thrift.async.AsyncMethodCallback<killTopology_call> resultHandler) throws org.apache.thrift.TException {
+    public void submitTopologyWithOpts(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options, org.apache.thrift7.async.AsyncMethodCallback<submitTopologyWithOpts_call> resultHandler) throws org.apache.thrift7.TException {
+      checkReady();
+      submitTopologyWithOpts_call method_call = new submitTopologyWithOpts_call(name, uploadedJarLocation, jsonConf, topology, options, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class submitTopologyWithOpts_call extends org.apache.thrift7.async.TAsyncMethodCall {
+      private String name;
+      private String uploadedJarLocation;
+      private String jsonConf;
+      private StormTopology topology;
+      private SubmitOptions options;
+      public submitTopologyWithOpts_call(String name, String uploadedJarLocation, String jsonConf, StormTopology topology, SubmitOptions options, org.apache.thrift7.async.AsyncMethodCallback<submitTopologyWithOpts_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.name = name;
+        this.uploadedJarLocation = uploadedJarLocation;
+        this.jsonConf = jsonConf;
+        this.topology = topology;
+        this.options = options;
+      }
+
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("submitTopologyWithOpts", org.apache.thrift7.protocol.TMessageType.CALL, 0));
+        submitTopologyWithOpts_args args = new submitTopologyWithOpts_args();
+        args.set_name(name);
+        args.set_uploadedJarLocation(uploadedJarLocation);
+        args.set_jsonConf(jsonConf);
+        args.set_topology(topology);
+        args.set_options(options);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public void getResult() throws AlreadyAliveException, InvalidTopologyException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        (new Client(prot)).recv_submitTopologyWithOpts();
+      }
+    }
+
+    public void killTopology(String name, org.apache.thrift7.async.AsyncMethodCallback<killTopology_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       killTopology_call method_call = new killTopology_call(name, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class killTopology_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class killTopology_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
-      public killTopology_call(String name, org.apache.thrift.async.AsyncMethodCallback<killTopology_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public killTopology_call(String name, org.apache.thrift7.async.AsyncMethodCallback<killTopology_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("killTopology", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("killTopology", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         killTopology_args args = new killTopology_args();
         args.set_name(name);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_killTopology();
       }
     }
 
-    public void killTopologyWithOpts(String name, KillOptions options, org.apache.thrift.async.AsyncMethodCallback<killTopologyWithOpts_call> resultHandler) throws org.apache.thrift.TException {
+    public void killTopologyWithOpts(String name, KillOptions options, org.apache.thrift7.async.AsyncMethodCallback<killTopologyWithOpts_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       killTopologyWithOpts_call method_call = new killTopologyWithOpts_call(name, options, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class killTopologyWithOpts_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class killTopologyWithOpts_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
       private KillOptions options;
-      public killTopologyWithOpts_call(String name, KillOptions options, org.apache.thrift.async.AsyncMethodCallback<killTopologyWithOpts_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public killTopologyWithOpts_call(String name, KillOptions options, org.apache.thrift7.async.AsyncMethodCallback<killTopologyWithOpts_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
         this.options = options;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("killTopologyWithOpts", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("killTopologyWithOpts", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         killTopologyWithOpts_args args = new killTopologyWithOpts_args();
         args.set_name(name);
         args.set_options(options);
@@ -612,98 +719,98 @@ public class Nimbus {
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_killTopologyWithOpts();
       }
     }
 
-    public void activate(String name, org.apache.thrift.async.AsyncMethodCallback<activate_call> resultHandler) throws org.apache.thrift.TException {
+    public void activate(String name, org.apache.thrift7.async.AsyncMethodCallback<activate_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       activate_call method_call = new activate_call(name, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class activate_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class activate_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
-      public activate_call(String name, org.apache.thrift.async.AsyncMethodCallback<activate_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public activate_call(String name, org.apache.thrift7.async.AsyncMethodCallback<activate_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("activate", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("activate", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         activate_args args = new activate_args();
         args.set_name(name);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_activate();
       }
     }
 
-    public void deactivate(String name, org.apache.thrift.async.AsyncMethodCallback<deactivate_call> resultHandler) throws org.apache.thrift.TException {
+    public void deactivate(String name, org.apache.thrift7.async.AsyncMethodCallback<deactivate_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       deactivate_call method_call = new deactivate_call(name, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class deactivate_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class deactivate_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
-      public deactivate_call(String name, org.apache.thrift.async.AsyncMethodCallback<deactivate_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public deactivate_call(String name, org.apache.thrift7.async.AsyncMethodCallback<deactivate_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("deactivate", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("deactivate", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         deactivate_args args = new deactivate_args();
         args.set_name(name);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_deactivate();
       }
     }
 
-    public void rebalance(String name, RebalanceOptions options, org.apache.thrift.async.AsyncMethodCallback<rebalance_call> resultHandler) throws org.apache.thrift.TException {
+    public void rebalance(String name, RebalanceOptions options, org.apache.thrift7.async.AsyncMethodCallback<rebalance_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       rebalance_call method_call = new rebalance_call(name, options, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class rebalance_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class rebalance_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String name;
       private RebalanceOptions options;
-      public rebalance_call(String name, RebalanceOptions options, org.apache.thrift.async.AsyncMethodCallback<rebalance_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public rebalance_call(String name, RebalanceOptions options, org.apache.thrift7.async.AsyncMethodCallback<rebalance_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.name = name;
         this.options = options;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("rebalance", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("rebalance", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         rebalance_args args = new rebalance_args();
         args.set_name(name);
         args.set_options(options);
@@ -711,63 +818,63 @@ public class Nimbus {
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws NotAliveException, InvalidTopologyException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_rebalance();
       }
     }
 
-    public void beginFileUpload(org.apache.thrift.async.AsyncMethodCallback<beginFileUpload_call> resultHandler) throws org.apache.thrift.TException {
+    public void beginFileUpload(org.apache.thrift7.async.AsyncMethodCallback<beginFileUpload_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       beginFileUpload_call method_call = new beginFileUpload_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class beginFileUpload_call extends org.apache.thrift.async.TAsyncMethodCall {
-      public beginFileUpload_call(org.apache.thrift.async.AsyncMethodCallback<beginFileUpload_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class beginFileUpload_call extends org.apache.thrift7.async.TAsyncMethodCall {
+      public beginFileUpload_call(org.apache.thrift7.async.AsyncMethodCallback<beginFileUpload_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("beginFileUpload", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("beginFileUpload", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         beginFileUpload_args args = new beginFileUpload_args();
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public String getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public String getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_beginFileUpload();
       }
     }
 
-    public void uploadChunk(String location, ByteBuffer chunk, org.apache.thrift.async.AsyncMethodCallback<uploadChunk_call> resultHandler) throws org.apache.thrift.TException {
+    public void uploadChunk(String location, ByteBuffer chunk, org.apache.thrift7.async.AsyncMethodCallback<uploadChunk_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       uploadChunk_call method_call = new uploadChunk_call(location, chunk, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class uploadChunk_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class uploadChunk_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String location;
       private ByteBuffer chunk;
-      public uploadChunk_call(String location, ByteBuffer chunk, org.apache.thrift.async.AsyncMethodCallback<uploadChunk_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public uploadChunk_call(String location, ByteBuffer chunk, org.apache.thrift7.async.AsyncMethodCallback<uploadChunk_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.location = location;
         this.chunk = chunk;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("uploadChunk", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("uploadChunk", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         uploadChunk_args args = new uploadChunk_args();
         args.set_location(location);
         args.set_chunk(chunk);
@@ -775,283 +882,313 @@ public class Nimbus {
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_uploadChunk();
       }
     }
 
-    public void finishFileUpload(String location, org.apache.thrift.async.AsyncMethodCallback<finishFileUpload_call> resultHandler) throws org.apache.thrift.TException {
+    public void finishFileUpload(String location, org.apache.thrift7.async.AsyncMethodCallback<finishFileUpload_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       finishFileUpload_call method_call = new finishFileUpload_call(location, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class finishFileUpload_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class finishFileUpload_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String location;
-      public finishFileUpload_call(String location, org.apache.thrift.async.AsyncMethodCallback<finishFileUpload_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public finishFileUpload_call(String location, org.apache.thrift7.async.AsyncMethodCallback<finishFileUpload_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.location = location;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("finishFileUpload", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("finishFileUpload", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         finishFileUpload_args args = new finishFileUpload_args();
         args.set_location(location);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public void getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public void getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         (new Client(prot)).recv_finishFileUpload();
       }
     }
 
-    public void beginFileDownload(String file, org.apache.thrift.async.AsyncMethodCallback<beginFileDownload_call> resultHandler) throws org.apache.thrift.TException {
+    public void beginFileDownload(String file, org.apache.thrift7.async.AsyncMethodCallback<beginFileDownload_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       beginFileDownload_call method_call = new beginFileDownload_call(file, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class beginFileDownload_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class beginFileDownload_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String file;
-      public beginFileDownload_call(String file, org.apache.thrift.async.AsyncMethodCallback<beginFileDownload_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public beginFileDownload_call(String file, org.apache.thrift7.async.AsyncMethodCallback<beginFileDownload_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.file = file;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("beginFileDownload", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("beginFileDownload", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         beginFileDownload_args args = new beginFileDownload_args();
         args.set_file(file);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public String getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public String getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_beginFileDownload();
       }
     }
 
-    public void downloadChunk(String id, org.apache.thrift.async.AsyncMethodCallback<downloadChunk_call> resultHandler) throws org.apache.thrift.TException {
+    public void downloadChunk(String id, org.apache.thrift7.async.AsyncMethodCallback<downloadChunk_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       downloadChunk_call method_call = new downloadChunk_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class downloadChunk_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class downloadChunk_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String id;
-      public downloadChunk_call(String id, org.apache.thrift.async.AsyncMethodCallback<downloadChunk_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public downloadChunk_call(String id, org.apache.thrift7.async.AsyncMethodCallback<downloadChunk_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("downloadChunk", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("downloadChunk", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         downloadChunk_args args = new downloadChunk_args();
         args.set_id(id);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public ByteBuffer getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public ByteBuffer getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_downloadChunk();
       }
     }
 
-    public void getClusterInfo(org.apache.thrift.async.AsyncMethodCallback<getClusterInfo_call> resultHandler) throws org.apache.thrift.TException {
+    public void getNimbusConf(org.apache.thrift7.async.AsyncMethodCallback<getNimbusConf_call> resultHandler) throws org.apache.thrift7.TException {
+      checkReady();
+      getNimbusConf_call method_call = new getNimbusConf_call(resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class getNimbusConf_call extends org.apache.thrift7.async.TAsyncMethodCall {
+      public getNimbusConf_call(org.apache.thrift7.async.AsyncMethodCallback<getNimbusConf_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+      }
+
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getNimbusConf", org.apache.thrift7.protocol.TMessageType.CALL, 0));
+        getNimbusConf_args args = new getNimbusConf_args();
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public String getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_getNimbusConf();
+      }
+    }
+
+    public void getClusterInfo(org.apache.thrift7.async.AsyncMethodCallback<getClusterInfo_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       getClusterInfo_call method_call = new getClusterInfo_call(resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getClusterInfo_call extends org.apache.thrift.async.TAsyncMethodCall {
-      public getClusterInfo_call(org.apache.thrift.async.AsyncMethodCallback<getClusterInfo_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+    public static class getClusterInfo_call extends org.apache.thrift7.async.TAsyncMethodCall {
+      public getClusterInfo_call(org.apache.thrift7.async.AsyncMethodCallback<getClusterInfo_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getClusterInfo", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getClusterInfo", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         getClusterInfo_args args = new getClusterInfo_args();
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public ClusterSummary getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public ClusterSummary getResult() throws org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_getClusterInfo();
       }
     }
 
-    public void getTopologyInfo(String id, org.apache.thrift.async.AsyncMethodCallback<getTopologyInfo_call> resultHandler) throws org.apache.thrift.TException {
+    public void getTopologyInfo(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopologyInfo_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       getTopologyInfo_call method_call = new getTopologyInfo_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getTopologyInfo_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class getTopologyInfo_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String id;
-      public getTopologyInfo_call(String id, org.apache.thrift.async.AsyncMethodCallback<getTopologyInfo_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getTopologyInfo_call(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopologyInfo_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getTopologyInfo", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getTopologyInfo", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         getTopologyInfo_args args = new getTopologyInfo_args();
         args.set_id(id);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public TopologyInfo getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public TopologyInfo getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_getTopologyInfo();
       }
     }
 
-    public void getSupervisorWorkers(String host, org.apache.thrift.async.AsyncMethodCallback<getSupervisorWorkers_call> resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      getSupervisorWorkers_call method_call = new getSupervisorWorkers_call(host, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class getSupervisorWorkers_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private String host;
-      public getSupervisorWorkers_call(String host, org.apache.thrift.async.AsyncMethodCallback<getSupervisorWorkers_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.host = host;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getSupervisorWorkers", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        getSupervisorWorkers_args args = new getSupervisorWorkers_args();
-        args.set_host(host);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public SupervisorWorkers getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_getSupervisorWorkers();
-      }
-    }
-
-    public void getTopologyConf(String id, org.apache.thrift.async.AsyncMethodCallback<getTopologyConf_call> resultHandler) throws org.apache.thrift.TException {
+    public void getTopologyConf(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopologyConf_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       getTopologyConf_call method_call = new getTopologyConf_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getTopologyConf_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class getTopologyConf_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String id;
-      public getTopologyConf_call(String id, org.apache.thrift.async.AsyncMethodCallback<getTopologyConf_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getTopologyConf_call(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopologyConf_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getTopologyConf", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getTopologyConf", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         getTopologyConf_args args = new getTopologyConf_args();
         args.set_id(id);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public String getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public String getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_getTopologyConf();
       }
     }
 
-    public void getTopology(String id, org.apache.thrift.async.AsyncMethodCallback<getTopology_call> resultHandler) throws org.apache.thrift.TException {
+    public void getTopology(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopology_call> resultHandler) throws org.apache.thrift7.TException {
       checkReady();
       getTopology_call method_call = new getTopology_call(id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
-    public static class getTopology_call extends org.apache.thrift.async.TAsyncMethodCall {
+    public static class getTopology_call extends org.apache.thrift7.async.TAsyncMethodCall {
       private String id;
-      public getTopology_call(String id, org.apache.thrift.async.AsyncMethodCallback<getTopology_call> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public getTopology_call(String id, org.apache.thrift7.async.AsyncMethodCallback<getTopology_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.id = id;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getTopology", org.apache.thrift.protocol.TMessageType.CALL, 0));
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getTopology", org.apache.thrift7.protocol.TMessageType.CALL, 0));
         getTopology_args args = new getTopology_args();
         args.set_id(id);
         args.write(prot);
         prot.writeMessageEnd();
       }
 
-      public StormTopology getResult() throws NotAliveException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+      public StormTopology getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_getTopology();
+      }
+    }
+
+    public void getUserTopology(String id, org.apache.thrift7.async.AsyncMethodCallback<getUserTopology_call> resultHandler) throws org.apache.thrift7.TException {
+      checkReady();
+      getUserTopology_call method_call = new getUserTopology_call(id, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class getUserTopology_call extends org.apache.thrift7.async.TAsyncMethodCall {
+      private String id;
+      public getUserTopology_call(String id, org.apache.thrift7.async.AsyncMethodCallback<getUserTopology_call> resultHandler, org.apache.thrift7.async.TAsyncClient client, org.apache.thrift7.protocol.TProtocolFactory protocolFactory, org.apache.thrift7.transport.TNonblockingTransport transport) throws org.apache.thrift7.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.id = id;
+      }
+
+      public void write_args(org.apache.thrift7.protocol.TProtocol prot) throws org.apache.thrift7.TException {
+        prot.writeMessageBegin(new org.apache.thrift7.protocol.TMessage("getUserTopology", org.apache.thrift7.protocol.TMessageType.CALL, 0));
+        getUserTopology_args args = new getUserTopology_args();
+        args.set_id(id);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public StormTopology getResult() throws NotAliveException, org.apache.thrift7.TException {
+        if (getState() != org.apache.thrift7.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift7.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift7.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift7.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_getUserTopology();
       }
     }
 
   }
 
-  public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor implements org.apache.thrift.TProcessor {
+  public static class Processor<I extends Iface> extends org.apache.thrift7.TBaseProcessor implements org.apache.thrift7.TProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class.getName());
     public Processor(I iface) {
-      super(iface, getProcessMap(new HashMap<String, org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>>()));
+      super(iface, getProcessMap(new HashMap<String, org.apache.thrift7.ProcessFunction<I, ? extends org.apache.thrift7.TBase>>()));
     }
 
-    protected Processor(I iface, Map<String,  org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
+    protected Processor(I iface, Map<String,  org.apache.thrift7.ProcessFunction<I, ? extends  org.apache.thrift7.TBase>> processMap) {
       super(iface, getProcessMap(processMap));
     }
 
-    private static <I extends Iface> Map<String,  org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> getProcessMap(Map<String,  org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
+    private static <I extends Iface> Map<String,  org.apache.thrift7.ProcessFunction<I, ? extends  org.apache.thrift7.TBase>> getProcessMap(Map<String,  org.apache.thrift7.ProcessFunction<I, ? extends  org.apache.thrift7.TBase>> processMap) {
       processMap.put("submitTopology", new submitTopology());
+      processMap.put("submitTopologyWithOpts", new submitTopologyWithOpts());
       processMap.put("killTopology", new killTopology());
       processMap.put("killTopologyWithOpts", new killTopologyWithOpts());
       processMap.put("activate", new activate());
@@ -1062,15 +1199,16 @@ public class Nimbus {
       processMap.put("finishFileUpload", new finishFileUpload());
       processMap.put("beginFileDownload", new beginFileDownload());
       processMap.put("downloadChunk", new downloadChunk());
+      processMap.put("getNimbusConf", new getNimbusConf());
       processMap.put("getClusterInfo", new getClusterInfo());
       processMap.put("getTopologyInfo", new getTopologyInfo());
-      processMap.put("getSupervisorWorkers", new getSupervisorWorkers());
       processMap.put("getTopologyConf", new getTopologyConf());
       processMap.put("getTopology", new getTopology());
+      processMap.put("getUserTopology", new getUserTopology());
       return processMap;
     }
 
-    private static class submitTopology<I extends Iface> extends org.apache.thrift.ProcessFunction<I, submitTopology_args> {
+    private static class submitTopology<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, submitTopology_args> {
       public submitTopology() {
         super("submitTopology");
       }
@@ -1079,7 +1217,7 @@ public class Nimbus {
         return new submitTopology_args();
       }
 
-      protected submitTopology_result getResult(I iface, submitTopology_args args) throws org.apache.thrift.TException {
+      protected submitTopology_result getResult(I iface, submitTopology_args args) throws org.apache.thrift7.TException {
         submitTopology_result result = new submitTopology_result();
         try {
           iface.submitTopology(args.name, args.uploadedJarLocation, args.jsonConf, args.topology);
@@ -1092,7 +1230,29 @@ public class Nimbus {
       }
     }
 
-    private static class killTopology<I extends Iface> extends org.apache.thrift.ProcessFunction<I, killTopology_args> {
+    private static class submitTopologyWithOpts<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, submitTopologyWithOpts_args> {
+      public submitTopologyWithOpts() {
+        super("submitTopologyWithOpts");
+      }
+
+      protected submitTopologyWithOpts_args getEmptyArgsInstance() {
+        return new submitTopologyWithOpts_args();
+      }
+
+      protected submitTopologyWithOpts_result getResult(I iface, submitTopologyWithOpts_args args) throws org.apache.thrift7.TException {
+        submitTopologyWithOpts_result result = new submitTopologyWithOpts_result();
+        try {
+          iface.submitTopologyWithOpts(args.name, args.uploadedJarLocation, args.jsonConf, args.topology, args.options);
+        } catch (AlreadyAliveException e) {
+          result.e = e;
+        } catch (InvalidTopologyException ite) {
+          result.ite = ite;
+        }
+        return result;
+      }
+    }
+
+    private static class killTopology<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, killTopology_args> {
       public killTopology() {
         super("killTopology");
       }
@@ -1101,7 +1261,7 @@ public class Nimbus {
         return new killTopology_args();
       }
 
-      protected killTopology_result getResult(I iface, killTopology_args args) throws org.apache.thrift.TException {
+      protected killTopology_result getResult(I iface, killTopology_args args) throws org.apache.thrift7.TException {
         killTopology_result result = new killTopology_result();
         try {
           iface.killTopology(args.name);
@@ -1112,7 +1272,7 @@ public class Nimbus {
       }
     }
 
-    private static class killTopologyWithOpts<I extends Iface> extends org.apache.thrift.ProcessFunction<I, killTopologyWithOpts_args> {
+    private static class killTopologyWithOpts<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, killTopologyWithOpts_args> {
       public killTopologyWithOpts() {
         super("killTopologyWithOpts");
       }
@@ -1121,7 +1281,7 @@ public class Nimbus {
         return new killTopologyWithOpts_args();
       }
 
-      protected killTopologyWithOpts_result getResult(I iface, killTopologyWithOpts_args args) throws org.apache.thrift.TException {
+      protected killTopologyWithOpts_result getResult(I iface, killTopologyWithOpts_args args) throws org.apache.thrift7.TException {
         killTopologyWithOpts_result result = new killTopologyWithOpts_result();
         try {
           iface.killTopologyWithOpts(args.name, args.options);
@@ -1132,7 +1292,7 @@ public class Nimbus {
       }
     }
 
-    private static class activate<I extends Iface> extends org.apache.thrift.ProcessFunction<I, activate_args> {
+    private static class activate<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, activate_args> {
       public activate() {
         super("activate");
       }
@@ -1141,7 +1301,7 @@ public class Nimbus {
         return new activate_args();
       }
 
-      protected activate_result getResult(I iface, activate_args args) throws org.apache.thrift.TException {
+      protected activate_result getResult(I iface, activate_args args) throws org.apache.thrift7.TException {
         activate_result result = new activate_result();
         try {
           iface.activate(args.name);
@@ -1152,7 +1312,7 @@ public class Nimbus {
       }
     }
 
-    private static class deactivate<I extends Iface> extends org.apache.thrift.ProcessFunction<I, deactivate_args> {
+    private static class deactivate<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, deactivate_args> {
       public deactivate() {
         super("deactivate");
       }
@@ -1161,7 +1321,7 @@ public class Nimbus {
         return new deactivate_args();
       }
 
-      protected deactivate_result getResult(I iface, deactivate_args args) throws org.apache.thrift.TException {
+      protected deactivate_result getResult(I iface, deactivate_args args) throws org.apache.thrift7.TException {
         deactivate_result result = new deactivate_result();
         try {
           iface.deactivate(args.name);
@@ -1172,7 +1332,7 @@ public class Nimbus {
       }
     }
 
-    private static class rebalance<I extends Iface> extends org.apache.thrift.ProcessFunction<I, rebalance_args> {
+    private static class rebalance<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, rebalance_args> {
       public rebalance() {
         super("rebalance");
       }
@@ -1181,18 +1341,20 @@ public class Nimbus {
         return new rebalance_args();
       }
 
-      protected rebalance_result getResult(I iface, rebalance_args args) throws org.apache.thrift.TException {
+      protected rebalance_result getResult(I iface, rebalance_args args) throws org.apache.thrift7.TException {
         rebalance_result result = new rebalance_result();
         try {
           iface.rebalance(args.name, args.options);
         } catch (NotAliveException e) {
           result.e = e;
+        } catch (InvalidTopologyException ite) {
+          result.ite = ite;
         }
         return result;
       }
     }
 
-    private static class beginFileUpload<I extends Iface> extends org.apache.thrift.ProcessFunction<I, beginFileUpload_args> {
+    private static class beginFileUpload<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, beginFileUpload_args> {
       public beginFileUpload() {
         super("beginFileUpload");
       }
@@ -1201,14 +1363,14 @@ public class Nimbus {
         return new beginFileUpload_args();
       }
 
-      protected beginFileUpload_result getResult(I iface, beginFileUpload_args args) throws org.apache.thrift.TException {
+      protected beginFileUpload_result getResult(I iface, beginFileUpload_args args) throws org.apache.thrift7.TException {
         beginFileUpload_result result = new beginFileUpload_result();
         result.success = iface.beginFileUpload();
         return result;
       }
     }
 
-    private static class uploadChunk<I extends Iface> extends org.apache.thrift.ProcessFunction<I, uploadChunk_args> {
+    private static class uploadChunk<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, uploadChunk_args> {
       public uploadChunk() {
         super("uploadChunk");
       }
@@ -1217,14 +1379,14 @@ public class Nimbus {
         return new uploadChunk_args();
       }
 
-      protected uploadChunk_result getResult(I iface, uploadChunk_args args) throws org.apache.thrift.TException {
+      protected uploadChunk_result getResult(I iface, uploadChunk_args args) throws org.apache.thrift7.TException {
         uploadChunk_result result = new uploadChunk_result();
         iface.uploadChunk(args.location, args.chunk);
         return result;
       }
     }
 
-    private static class finishFileUpload<I extends Iface> extends org.apache.thrift.ProcessFunction<I, finishFileUpload_args> {
+    private static class finishFileUpload<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, finishFileUpload_args> {
       public finishFileUpload() {
         super("finishFileUpload");
       }
@@ -1233,14 +1395,14 @@ public class Nimbus {
         return new finishFileUpload_args();
       }
 
-      protected finishFileUpload_result getResult(I iface, finishFileUpload_args args) throws org.apache.thrift.TException {
+      protected finishFileUpload_result getResult(I iface, finishFileUpload_args args) throws org.apache.thrift7.TException {
         finishFileUpload_result result = new finishFileUpload_result();
         iface.finishFileUpload(args.location);
         return result;
       }
     }
 
-    private static class beginFileDownload<I extends Iface> extends org.apache.thrift.ProcessFunction<I, beginFileDownload_args> {
+    private static class beginFileDownload<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, beginFileDownload_args> {
       public beginFileDownload() {
         super("beginFileDownload");
       }
@@ -1249,14 +1411,14 @@ public class Nimbus {
         return new beginFileDownload_args();
       }
 
-      protected beginFileDownload_result getResult(I iface, beginFileDownload_args args) throws org.apache.thrift.TException {
+      protected beginFileDownload_result getResult(I iface, beginFileDownload_args args) throws org.apache.thrift7.TException {
         beginFileDownload_result result = new beginFileDownload_result();
         result.success = iface.beginFileDownload(args.file);
         return result;
       }
     }
 
-    private static class downloadChunk<I extends Iface> extends org.apache.thrift.ProcessFunction<I, downloadChunk_args> {
+    private static class downloadChunk<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, downloadChunk_args> {
       public downloadChunk() {
         super("downloadChunk");
       }
@@ -1265,14 +1427,30 @@ public class Nimbus {
         return new downloadChunk_args();
       }
 
-      protected downloadChunk_result getResult(I iface, downloadChunk_args args) throws org.apache.thrift.TException {
+      protected downloadChunk_result getResult(I iface, downloadChunk_args args) throws org.apache.thrift7.TException {
         downloadChunk_result result = new downloadChunk_result();
         result.success = iface.downloadChunk(args.id);
         return result;
       }
     }
 
-    private static class getClusterInfo<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getClusterInfo_args> {
+    private static class getNimbusConf<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getNimbusConf_args> {
+      public getNimbusConf() {
+        super("getNimbusConf");
+      }
+
+      protected getNimbusConf_args getEmptyArgsInstance() {
+        return new getNimbusConf_args();
+      }
+
+      protected getNimbusConf_result getResult(I iface, getNimbusConf_args args) throws org.apache.thrift7.TException {
+        getNimbusConf_result result = new getNimbusConf_result();
+        result.success = iface.getNimbusConf();
+        return result;
+      }
+    }
+
+    private static class getClusterInfo<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getClusterInfo_args> {
       public getClusterInfo() {
         super("getClusterInfo");
       }
@@ -1281,14 +1459,14 @@ public class Nimbus {
         return new getClusterInfo_args();
       }
 
-      protected getClusterInfo_result getResult(I iface, getClusterInfo_args args) throws org.apache.thrift.TException {
+      protected getClusterInfo_result getResult(I iface, getClusterInfo_args args) throws org.apache.thrift7.TException {
         getClusterInfo_result result = new getClusterInfo_result();
         result.success = iface.getClusterInfo();
         return result;
       }
     }
 
-    private static class getTopologyInfo<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getTopologyInfo_args> {
+    private static class getTopologyInfo<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getTopologyInfo_args> {
       public getTopologyInfo() {
         super("getTopologyInfo");
       }
@@ -1297,7 +1475,7 @@ public class Nimbus {
         return new getTopologyInfo_args();
       }
 
-      protected getTopologyInfo_result getResult(I iface, getTopologyInfo_args args) throws org.apache.thrift.TException {
+      protected getTopologyInfo_result getResult(I iface, getTopologyInfo_args args) throws org.apache.thrift7.TException {
         getTopologyInfo_result result = new getTopologyInfo_result();
         try {
           result.success = iface.getTopologyInfo(args.id);
@@ -1308,27 +1486,7 @@ public class Nimbus {
       }
     }
 
-    private static class getSupervisorWorkers<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getSupervisorWorkers_args> {
-      public getSupervisorWorkers() {
-        super("getSupervisorWorkers");
-      }
-
-      protected getSupervisorWorkers_args getEmptyArgsInstance() {
-        return new getSupervisorWorkers_args();
-      }
-
-      protected getSupervisorWorkers_result getResult(I iface, getSupervisorWorkers_args args) throws org.apache.thrift.TException {
-        getSupervisorWorkers_result result = new getSupervisorWorkers_result();
-        try {
-          result.success = iface.getSupervisorWorkers(args.host);
-        } catch (NotAliveException e) {
-          result.e = e;
-        }
-        return result;
-      }
-    }
-
-    private static class getTopologyConf<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getTopologyConf_args> {
+    private static class getTopologyConf<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getTopologyConf_args> {
       public getTopologyConf() {
         super("getTopologyConf");
       }
@@ -1337,7 +1495,7 @@ public class Nimbus {
         return new getTopologyConf_args();
       }
 
-      protected getTopologyConf_result getResult(I iface, getTopologyConf_args args) throws org.apache.thrift.TException {
+      protected getTopologyConf_result getResult(I iface, getTopologyConf_args args) throws org.apache.thrift7.TException {
         getTopologyConf_result result = new getTopologyConf_result();
         try {
           result.success = iface.getTopologyConf(args.id);
@@ -1348,7 +1506,7 @@ public class Nimbus {
       }
     }
 
-    private static class getTopology<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getTopology_args> {
+    private static class getTopology<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getTopology_args> {
       public getTopology() {
         super("getTopology");
       }
@@ -1357,7 +1515,7 @@ public class Nimbus {
         return new getTopology_args();
       }
 
-      protected getTopology_result getResult(I iface, getTopology_args args) throws org.apache.thrift.TException {
+      protected getTopology_result getResult(I iface, getTopology_args args) throws org.apache.thrift7.TException {
         getTopology_result result = new getTopology_result();
         try {
           result.success = iface.getTopology(args.id);
@@ -1368,15 +1526,35 @@ public class Nimbus {
       }
     }
 
+    private static class getUserTopology<I extends Iface> extends org.apache.thrift7.ProcessFunction<I, getUserTopology_args> {
+      public getUserTopology() {
+        super("getUserTopology");
+      }
+
+      protected getUserTopology_args getEmptyArgsInstance() {
+        return new getUserTopology_args();
+      }
+
+      protected getUserTopology_result getResult(I iface, getUserTopology_args args) throws org.apache.thrift7.TException {
+        getUserTopology_result result = new getUserTopology_result();
+        try {
+          result.success = iface.getUserTopology(args.id);
+        } catch (NotAliveException e) {
+          result.e = e;
+        }
+        return result;
+      }
+    }
+
   }
 
-  public static class submitTopology_args implements org.apache.thrift.TBase<submitTopology_args, submitTopology_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("submitTopology_args");
+  public static class submitTopology_args implements org.apache.thrift7.TBase<submitTopology_args, submitTopology_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("submitTopology_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField UPLOADED_JAR_LOCATION_FIELD_DESC = new org.apache.thrift.protocol.TField("uploadedJarLocation", org.apache.thrift.protocol.TType.STRING, (short)2);
-    private static final org.apache.thrift.protocol.TField JSON_CONF_FIELD_DESC = new org.apache.thrift.protocol.TField("jsonConf", org.apache.thrift.protocol.TType.STRING, (short)3);
-    private static final org.apache.thrift.protocol.TField TOPOLOGY_FIELD_DESC = new org.apache.thrift.protocol.TField("topology", org.apache.thrift.protocol.TType.STRUCT, (short)4);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField UPLOADED_JAR_LOCATION_FIELD_DESC = new org.apache.thrift7.protocol.TField("uploadedJarLocation", org.apache.thrift7.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift7.protocol.TField JSON_CONF_FIELD_DESC = new org.apache.thrift7.protocol.TField("jsonConf", org.apache.thrift7.protocol.TType.STRING, (short)3);
+    private static final org.apache.thrift7.protocol.TField TOPOLOGY_FIELD_DESC = new org.apache.thrift7.protocol.TField("topology", org.apache.thrift7.protocol.TType.STRUCT, (short)4);
 
     private String name; // required
     private String uploadedJarLocation; // required
@@ -1384,7 +1562,7 @@ public class Nimbus {
     private StormTopology topology; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name"),
       UPLOADED_JAR_LOCATION((short)2, "uploadedJarLocation"),
       JSON_CONF((short)3, "jsonConf"),
@@ -1452,19 +1630,19 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.UPLOADED_JAR_LOCATION, new org.apache.thrift.meta_data.FieldMetaData("uploadedJarLocation", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.JSON_CONF, new org.apache.thrift.meta_data.FieldMetaData("jsonConf", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.TOPOLOGY, new org.apache.thrift.meta_data.FieldMetaData("topology", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, StormTopology.class)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.UPLOADED_JAR_LOCATION, new org.apache.thrift7.meta_data.FieldMetaData("uploadedJarLocation", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.JSON_CONF, new org.apache.thrift7.meta_data.FieldMetaData("jsonConf", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.TOPOLOGY, new org.apache.thrift7.meta_data.FieldMetaData("topology", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, StormTopology.class)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(submitTopology_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(submitTopology_args.class, metaDataMap);
     }
 
     public submitTopology_args() {
@@ -1771,7 +1949,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -1781,7 +1959,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_uploadedJarLocation()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.uploadedJarLocation, typedOther.uploadedJarLocation);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.uploadedJarLocation, typedOther.uploadedJarLocation);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -1791,7 +1969,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_jsonConf()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.jsonConf, typedOther.jsonConf);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.jsonConf, typedOther.jsonConf);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -1801,7 +1979,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_topology()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.topology, typedOther.topology);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.topology, typedOther.topology);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -1813,47 +1991,47 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 2: // UPLOADED_JAR_LOCATION
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.uploadedJarLocation = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 3: // JSON_CONF
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.jsonConf = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 4: // TOPOLOGY
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.topology = new StormTopology();
               this.topology.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -1861,7 +2039,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -1929,39 +2107,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class submitTopology_result implements org.apache.thrift.TBase<submitTopology_result, submitTopology_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("submitTopology_result");
+  public static class submitTopology_result implements org.apache.thrift7.TBase<submitTopology_result, submitTopology_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("submitTopology_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-    private static final org.apache.thrift.protocol.TField ITE_FIELD_DESC = new org.apache.thrift.protocol.TField("ite", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField ITE_FIELD_DESC = new org.apache.thrift7.protocol.TField("ite", org.apache.thrift7.protocol.TType.STRUCT, (short)2);
 
     private AlreadyAliveException e; // required
     private InvalidTopologyException ite; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       E((short)1, "e"),
       ITE((short)2, "ite");
 
@@ -2023,15 +2201,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
-      tmpMap.put(_Fields.ITE, new org.apache.thrift.meta_data.FieldMetaData("ite", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
+      tmpMap.put(_Fields.ITE, new org.apache.thrift7.meta_data.FieldMetaData("ite", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(submitTopology_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(submitTopology_result.class, metaDataMap);
     }
 
     public submitTopology_result() {
@@ -2226,7 +2404,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -2236,7 +2414,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_ite()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ite, typedOther.ite);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.ite, typedOther.ite);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -2248,34 +2426,34 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new AlreadyAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 2: // ITE
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.ite = new InvalidTopologyException();
               this.ite.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -2283,7 +2461,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
@@ -2323,37 +2501,1106 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class killTopology_args implements org.apache.thrift.TBase<killTopology_args, killTopology_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("killTopology_args");
+  public static class submitTopologyWithOpts_args implements org.apache.thrift7.TBase<submitTopologyWithOpts_args, submitTopologyWithOpts_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("submitTopologyWithOpts_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField UPLOADED_JAR_LOCATION_FIELD_DESC = new org.apache.thrift7.protocol.TField("uploadedJarLocation", org.apache.thrift7.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift7.protocol.TField JSON_CONF_FIELD_DESC = new org.apache.thrift7.protocol.TField("jsonConf", org.apache.thrift7.protocol.TType.STRING, (short)3);
+    private static final org.apache.thrift7.protocol.TField TOPOLOGY_FIELD_DESC = new org.apache.thrift7.protocol.TField("topology", org.apache.thrift7.protocol.TType.STRUCT, (short)4);
+    private static final org.apache.thrift7.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift7.protocol.TField("options", org.apache.thrift7.protocol.TType.STRUCT, (short)5);
+
+    private String name; // required
+    private String uploadedJarLocation; // required
+    private String jsonConf; // required
+    private StormTopology topology; // required
+    private SubmitOptions options; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      NAME((short)1, "name"),
+      UPLOADED_JAR_LOCATION((short)2, "uploadedJarLocation"),
+      JSON_CONF((short)3, "jsonConf"),
+      TOPOLOGY((short)4, "topology"),
+      OPTIONS((short)5, "options");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // NAME
+            return NAME;
+          case 2: // UPLOADED_JAR_LOCATION
+            return UPLOADED_JAR_LOCATION;
+          case 3: // JSON_CONF
+            return JSON_CONF;
+          case 4: // TOPOLOGY
+            return TOPOLOGY;
+          case 5: // OPTIONS
+            return OPTIONS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.UPLOADED_JAR_LOCATION, new org.apache.thrift7.meta_data.FieldMetaData("uploadedJarLocation", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.JSON_CONF, new org.apache.thrift7.meta_data.FieldMetaData("jsonConf", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.TOPOLOGY, new org.apache.thrift7.meta_data.FieldMetaData("topology", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, StormTopology.class)));
+      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift7.meta_data.FieldMetaData("options", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, SubmitOptions.class)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(submitTopologyWithOpts_args.class, metaDataMap);
+    }
+
+    public submitTopologyWithOpts_args() {
+    }
+
+    public submitTopologyWithOpts_args(
+      String name,
+      String uploadedJarLocation,
+      String jsonConf,
+      StormTopology topology,
+      SubmitOptions options)
+    {
+      this();
+      this.name = name;
+      this.uploadedJarLocation = uploadedJarLocation;
+      this.jsonConf = jsonConf;
+      this.topology = topology;
+      this.options = options;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public submitTopologyWithOpts_args(submitTopologyWithOpts_args other) {
+      if (other.is_set_name()) {
+        this.name = other.name;
+      }
+      if (other.is_set_uploadedJarLocation()) {
+        this.uploadedJarLocation = other.uploadedJarLocation;
+      }
+      if (other.is_set_jsonConf()) {
+        this.jsonConf = other.jsonConf;
+      }
+      if (other.is_set_topology()) {
+        this.topology = new StormTopology(other.topology);
+      }
+      if (other.is_set_options()) {
+        this.options = new SubmitOptions(other.options);
+      }
+    }
+
+    public submitTopologyWithOpts_args deepCopy() {
+      return new submitTopologyWithOpts_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.name = null;
+      this.uploadedJarLocation = null;
+      this.jsonConf = null;
+      this.topology = null;
+      this.options = null;
+    }
+
+    public String get_name() {
+      return this.name;
+    }
+
+    public void set_name(String name) {
+      this.name = name;
+    }
+
+    public void unset_name() {
+      this.name = null;
+    }
+
+    /** Returns true if field name is set (has been assigned a value) and false otherwise */
+    public boolean is_set_name() {
+      return this.name != null;
+    }
+
+    public void set_name_isSet(boolean value) {
+      if (!value) {
+        this.name = null;
+      }
+    }
+
+    public String get_uploadedJarLocation() {
+      return this.uploadedJarLocation;
+    }
+
+    public void set_uploadedJarLocation(String uploadedJarLocation) {
+      this.uploadedJarLocation = uploadedJarLocation;
+    }
+
+    public void unset_uploadedJarLocation() {
+      this.uploadedJarLocation = null;
+    }
+
+    /** Returns true if field uploadedJarLocation is set (has been assigned a value) and false otherwise */
+    public boolean is_set_uploadedJarLocation() {
+      return this.uploadedJarLocation != null;
+    }
+
+    public void set_uploadedJarLocation_isSet(boolean value) {
+      if (!value) {
+        this.uploadedJarLocation = null;
+      }
+    }
+
+    public String get_jsonConf() {
+      return this.jsonConf;
+    }
+
+    public void set_jsonConf(String jsonConf) {
+      this.jsonConf = jsonConf;
+    }
+
+    public void unset_jsonConf() {
+      this.jsonConf = null;
+    }
+
+    /** Returns true if field jsonConf is set (has been assigned a value) and false otherwise */
+    public boolean is_set_jsonConf() {
+      return this.jsonConf != null;
+    }
+
+    public void set_jsonConf_isSet(boolean value) {
+      if (!value) {
+        this.jsonConf = null;
+      }
+    }
+
+    public StormTopology get_topology() {
+      return this.topology;
+    }
+
+    public void set_topology(StormTopology topology) {
+      this.topology = topology;
+    }
+
+    public void unset_topology() {
+      this.topology = null;
+    }
+
+    /** Returns true if field topology is set (has been assigned a value) and false otherwise */
+    public boolean is_set_topology() {
+      return this.topology != null;
+    }
+
+    public void set_topology_isSet(boolean value) {
+      if (!value) {
+        this.topology = null;
+      }
+    }
+
+    public SubmitOptions get_options() {
+      return this.options;
+    }
+
+    public void set_options(SubmitOptions options) {
+      this.options = options;
+    }
+
+    public void unset_options() {
+      this.options = null;
+    }
+
+    /** Returns true if field options is set (has been assigned a value) and false otherwise */
+    public boolean is_set_options() {
+      return this.options != null;
+    }
+
+    public void set_options_isSet(boolean value) {
+      if (!value) {
+        this.options = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case NAME:
+        if (value == null) {
+          unset_name();
+        } else {
+          set_name((String)value);
+        }
+        break;
+
+      case UPLOADED_JAR_LOCATION:
+        if (value == null) {
+          unset_uploadedJarLocation();
+        } else {
+          set_uploadedJarLocation((String)value);
+        }
+        break;
+
+      case JSON_CONF:
+        if (value == null) {
+          unset_jsonConf();
+        } else {
+          set_jsonConf((String)value);
+        }
+        break;
+
+      case TOPOLOGY:
+        if (value == null) {
+          unset_topology();
+        } else {
+          set_topology((StormTopology)value);
+        }
+        break;
+
+      case OPTIONS:
+        if (value == null) {
+          unset_options();
+        } else {
+          set_options((SubmitOptions)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case NAME:
+        return get_name();
+
+      case UPLOADED_JAR_LOCATION:
+        return get_uploadedJarLocation();
+
+      case JSON_CONF:
+        return get_jsonConf();
+
+      case TOPOLOGY:
+        return get_topology();
+
+      case OPTIONS:
+        return get_options();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case NAME:
+        return is_set_name();
+      case UPLOADED_JAR_LOCATION:
+        return is_set_uploadedJarLocation();
+      case JSON_CONF:
+        return is_set_jsonConf();
+      case TOPOLOGY:
+        return is_set_topology();
+      case OPTIONS:
+        return is_set_options();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof submitTopologyWithOpts_args)
+        return this.equals((submitTopologyWithOpts_args)that);
+      return false;
+    }
+
+    public boolean equals(submitTopologyWithOpts_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_name = true && this.is_set_name();
+      boolean that_present_name = true && that.is_set_name();
+      if (this_present_name || that_present_name) {
+        if (!(this_present_name && that_present_name))
+          return false;
+        if (!this.name.equals(that.name))
+          return false;
+      }
+
+      boolean this_present_uploadedJarLocation = true && this.is_set_uploadedJarLocation();
+      boolean that_present_uploadedJarLocation = true && that.is_set_uploadedJarLocation();
+      if (this_present_uploadedJarLocation || that_present_uploadedJarLocation) {
+        if (!(this_present_uploadedJarLocation && that_present_uploadedJarLocation))
+          return false;
+        if (!this.uploadedJarLocation.equals(that.uploadedJarLocation))
+          return false;
+      }
+
+      boolean this_present_jsonConf = true && this.is_set_jsonConf();
+      boolean that_present_jsonConf = true && that.is_set_jsonConf();
+      if (this_present_jsonConf || that_present_jsonConf) {
+        if (!(this_present_jsonConf && that_present_jsonConf))
+          return false;
+        if (!this.jsonConf.equals(that.jsonConf))
+          return false;
+      }
+
+      boolean this_present_topology = true && this.is_set_topology();
+      boolean that_present_topology = true && that.is_set_topology();
+      if (this_present_topology || that_present_topology) {
+        if (!(this_present_topology && that_present_topology))
+          return false;
+        if (!this.topology.equals(that.topology))
+          return false;
+      }
+
+      boolean this_present_options = true && this.is_set_options();
+      boolean that_present_options = true && that.is_set_options();
+      if (this_present_options || that_present_options) {
+        if (!(this_present_options && that_present_options))
+          return false;
+        if (!this.options.equals(that.options))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      boolean present_name = true && (is_set_name());
+      builder.append(present_name);
+      if (present_name)
+        builder.append(name);
+
+      boolean present_uploadedJarLocation = true && (is_set_uploadedJarLocation());
+      builder.append(present_uploadedJarLocation);
+      if (present_uploadedJarLocation)
+        builder.append(uploadedJarLocation);
+
+      boolean present_jsonConf = true && (is_set_jsonConf());
+      builder.append(present_jsonConf);
+      if (present_jsonConf)
+        builder.append(jsonConf);
+
+      boolean present_topology = true && (is_set_topology());
+      builder.append(present_topology);
+      if (present_topology)
+        builder.append(topology);
+
+      boolean present_options = true && (is_set_options());
+      builder.append(present_options);
+      if (present_options)
+        builder.append(options);
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(submitTopologyWithOpts_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      submitTopologyWithOpts_args typedOther = (submitTopologyWithOpts_args)other;
+
+      lastComparison = Boolean.valueOf(is_set_name()).compareTo(typedOther.is_set_name());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_name()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_uploadedJarLocation()).compareTo(typedOther.is_set_uploadedJarLocation());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_uploadedJarLocation()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.uploadedJarLocation, typedOther.uploadedJarLocation);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_jsonConf()).compareTo(typedOther.is_set_jsonConf());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_jsonConf()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.jsonConf, typedOther.jsonConf);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_topology()).compareTo(typedOther.is_set_topology());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_topology()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.topology, typedOther.topology);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_options()).compareTo(typedOther.is_set_options());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_options()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.options, typedOther.options);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          case 1: // NAME
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
+              this.name = iprot.readString();
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 2: // UPLOADED_JAR_LOCATION
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
+              this.uploadedJarLocation = iprot.readString();
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 3: // JSON_CONF
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
+              this.jsonConf = iprot.readString();
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 4: // TOPOLOGY
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.topology = new StormTopology();
+              this.topology.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 5: // OPTIONS
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.options = new SubmitOptions();
+              this.options.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      validate();
+
+      oprot.writeStructBegin(STRUCT_DESC);
+      if (this.name != null) {
+        oprot.writeFieldBegin(NAME_FIELD_DESC);
+        oprot.writeString(this.name);
+        oprot.writeFieldEnd();
+      }
+      if (this.uploadedJarLocation != null) {
+        oprot.writeFieldBegin(UPLOADED_JAR_LOCATION_FIELD_DESC);
+        oprot.writeString(this.uploadedJarLocation);
+        oprot.writeFieldEnd();
+      }
+      if (this.jsonConf != null) {
+        oprot.writeFieldBegin(JSON_CONF_FIELD_DESC);
+        oprot.writeString(this.jsonConf);
+        oprot.writeFieldEnd();
+      }
+      if (this.topology != null) {
+        oprot.writeFieldBegin(TOPOLOGY_FIELD_DESC);
+        this.topology.write(oprot);
+        oprot.writeFieldEnd();
+      }
+      if (this.options != null) {
+        oprot.writeFieldBegin(OPTIONS_FIELD_DESC);
+        this.options.write(oprot);
+        oprot.writeFieldEnd();
+      }
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("submitTopologyWithOpts_args(");
+      boolean first = true;
+
+      sb.append("name:");
+      if (this.name == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.name);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("uploadedJarLocation:");
+      if (this.uploadedJarLocation == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.uploadedJarLocation);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("jsonConf:");
+      if (this.jsonConf == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.jsonConf);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("topology:");
+      if (this.topology == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.topology);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("options:");
+      if (this.options == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.options);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class submitTopologyWithOpts_result implements org.apache.thrift7.TBase<submitTopologyWithOpts_result, submitTopologyWithOpts_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("submitTopologyWithOpts_result");
+
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField ITE_FIELD_DESC = new org.apache.thrift7.protocol.TField("ite", org.apache.thrift7.protocol.TType.STRUCT, (short)2);
+
+    private AlreadyAliveException e; // required
+    private InvalidTopologyException ite; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      E((short)1, "e"),
+      ITE((short)2, "ite");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // E
+            return E;
+          case 2: // ITE
+            return ITE;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
+      tmpMap.put(_Fields.ITE, new org.apache.thrift7.meta_data.FieldMetaData("ite", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(submitTopologyWithOpts_result.class, metaDataMap);
+    }
+
+    public submitTopologyWithOpts_result() {
+    }
+
+    public submitTopologyWithOpts_result(
+      AlreadyAliveException e,
+      InvalidTopologyException ite)
+    {
+      this();
+      this.e = e;
+      this.ite = ite;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public submitTopologyWithOpts_result(submitTopologyWithOpts_result other) {
+      if (other.is_set_e()) {
+        this.e = new AlreadyAliveException(other.e);
+      }
+      if (other.is_set_ite()) {
+        this.ite = new InvalidTopologyException(other.ite);
+      }
+    }
+
+    public submitTopologyWithOpts_result deepCopy() {
+      return new submitTopologyWithOpts_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.e = null;
+      this.ite = null;
+    }
+
+    public AlreadyAliveException get_e() {
+      return this.e;
+    }
+
+    public void set_e(AlreadyAliveException e) {
+      this.e = e;
+    }
+
+    public void unset_e() {
+      this.e = null;
+    }
+
+    /** Returns true if field e is set (has been assigned a value) and false otherwise */
+    public boolean is_set_e() {
+      return this.e != null;
+    }
+
+    public void set_e_isSet(boolean value) {
+      if (!value) {
+        this.e = null;
+      }
+    }
+
+    public InvalidTopologyException get_ite() {
+      return this.ite;
+    }
+
+    public void set_ite(InvalidTopologyException ite) {
+      this.ite = ite;
+    }
+
+    public void unset_ite() {
+      this.ite = null;
+    }
+
+    /** Returns true if field ite is set (has been assigned a value) and false otherwise */
+    public boolean is_set_ite() {
+      return this.ite != null;
+    }
+
+    public void set_ite_isSet(boolean value) {
+      if (!value) {
+        this.ite = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case E:
+        if (value == null) {
+          unset_e();
+        } else {
+          set_e((AlreadyAliveException)value);
+        }
+        break;
+
+      case ITE:
+        if (value == null) {
+          unset_ite();
+        } else {
+          set_ite((InvalidTopologyException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case E:
+        return get_e();
+
+      case ITE:
+        return get_ite();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case E:
+        return is_set_e();
+      case ITE:
+        return is_set_ite();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof submitTopologyWithOpts_result)
+        return this.equals((submitTopologyWithOpts_result)that);
+      return false;
+    }
+
+    public boolean equals(submitTopologyWithOpts_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_e = true && this.is_set_e();
+      boolean that_present_e = true && that.is_set_e();
+      if (this_present_e || that_present_e) {
+        if (!(this_present_e && that_present_e))
+          return false;
+        if (!this.e.equals(that.e))
+          return false;
+      }
+
+      boolean this_present_ite = true && this.is_set_ite();
+      boolean that_present_ite = true && that.is_set_ite();
+      if (this_present_ite || that_present_ite) {
+        if (!(this_present_ite && that_present_ite))
+          return false;
+        if (!this.ite.equals(that.ite))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      boolean present_e = true && (is_set_e());
+      builder.append(present_e);
+      if (present_e)
+        builder.append(e);
+
+      boolean present_ite = true && (is_set_ite());
+      builder.append(present_ite);
+      if (present_ite)
+        builder.append(ite);
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(submitTopologyWithOpts_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      submitTopologyWithOpts_result typedOther = (submitTopologyWithOpts_result)other;
+
+      lastComparison = Boolean.valueOf(is_set_e()).compareTo(typedOther.is_set_e());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_e()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_ite()).compareTo(typedOther.is_set_ite());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_ite()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.ite, typedOther.ite);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          case 1: // E
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.e = new AlreadyAliveException();
+              this.e.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 2: // ITE
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.ite = new InvalidTopologyException();
+              this.ite.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      oprot.writeStructBegin(STRUCT_DESC);
+
+      if (this.is_set_e()) {
+        oprot.writeFieldBegin(E_FIELD_DESC);
+        this.e.write(oprot);
+        oprot.writeFieldEnd();
+      } else if (this.is_set_ite()) {
+        oprot.writeFieldBegin(ITE_FIELD_DESC);
+        this.ite.write(oprot);
+        oprot.writeFieldEnd();
+      }
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("submitTopologyWithOpts_result(");
+      boolean first = true;
+
+      sb.append("e:");
+      if (this.e == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.e);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("ite:");
+      if (this.ite == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.ite);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class killTopology_args implements org.apache.thrift7.TBase<killTopology_args, killTopology_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("killTopology_args");
+
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String name; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -2412,13 +3659,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(killTopology_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(killTopology_args.class, metaDataMap);
     }
 
     public killTopology_args() {
@@ -2557,7 +3804,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -2569,25 +3816,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -2595,7 +3842,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -2624,37 +3871,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class killTopology_result implements org.apache.thrift.TBase<killTopology_result, killTopology_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("killTopology_result");
+  public static class killTopology_result implements org.apache.thrift7.TBase<killTopology_result, killTopology_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("killTopology_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       E((short)1, "e");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -2713,13 +3960,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(killTopology_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(killTopology_result.class, metaDataMap);
     }
 
     public killTopology_result() {
@@ -2858,7 +4105,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -2870,26 +4117,26 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -2897,7 +4144,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
@@ -2925,39 +4172,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class killTopologyWithOpts_args implements org.apache.thrift.TBase<killTopologyWithOpts_args, killTopologyWithOpts_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("killTopologyWithOpts_args");
+  public static class killTopologyWithOpts_args implements org.apache.thrift7.TBase<killTopologyWithOpts_args, killTopologyWithOpts_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("killTopologyWithOpts_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift.protocol.TField("options", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift7.protocol.TField("options", org.apache.thrift7.protocol.TType.STRUCT, (short)2);
 
     private String name; // required
     private KillOptions options; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name"),
       OPTIONS((short)2, "options");
 
@@ -3019,15 +4266,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift.meta_data.FieldMetaData("options", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, KillOptions.class)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift7.meta_data.FieldMetaData("options", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, KillOptions.class)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(killTopologyWithOpts_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(killTopologyWithOpts_args.class, metaDataMap);
     }
 
     public killTopologyWithOpts_args() {
@@ -3222,7 +4469,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3232,7 +4479,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_options()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.options, typedOther.options);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.options, typedOther.options);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3244,33 +4491,33 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 2: // OPTIONS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.options = new KillOptions();
               this.options.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -3278,7 +4525,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -3320,37 +4567,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class killTopologyWithOpts_result implements org.apache.thrift.TBase<killTopologyWithOpts_result, killTopologyWithOpts_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("killTopologyWithOpts_result");
+  public static class killTopologyWithOpts_result implements org.apache.thrift7.TBase<killTopologyWithOpts_result, killTopologyWithOpts_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("killTopologyWithOpts_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       E((short)1, "e");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -3409,13 +4656,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(killTopologyWithOpts_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(killTopologyWithOpts_result.class, metaDataMap);
     }
 
     public killTopologyWithOpts_result() {
@@ -3554,7 +4801,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3566,26 +4813,26 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -3593,7 +4840,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
@@ -3621,37 +4868,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class activate_args implements org.apache.thrift.TBase<activate_args, activate_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("activate_args");
+  public static class activate_args implements org.apache.thrift7.TBase<activate_args, activate_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("activate_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String name; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -3710,13 +4957,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(activate_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(activate_args.class, metaDataMap);
     }
 
     public activate_args() {
@@ -3855,7 +5102,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3867,25 +5114,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -3893,7 +5140,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -3922,37 +5169,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class activate_result implements org.apache.thrift.TBase<activate_result, activate_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("activate_result");
+  public static class activate_result implements org.apache.thrift7.TBase<activate_result, activate_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("activate_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       E((short)1, "e");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -4011,13 +5258,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(activate_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(activate_result.class, metaDataMap);
     }
 
     public activate_result() {
@@ -4156,7 +5403,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -4168,26 +5415,26 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -4195,7 +5442,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
@@ -4223,37 +5470,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class deactivate_args implements org.apache.thrift.TBase<deactivate_args, deactivate_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deactivate_args");
+  public static class deactivate_args implements org.apache.thrift7.TBase<deactivate_args, deactivate_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("deactivate_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String name; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -4312,13 +5559,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deactivate_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(deactivate_args.class, metaDataMap);
     }
 
     public deactivate_args() {
@@ -4457,7 +5704,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -4469,25 +5716,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -4495,7 +5742,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -4524,37 +5771,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class deactivate_result implements org.apache.thrift.TBase<deactivate_result, deactivate_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deactivate_result");
+  public static class deactivate_result implements org.apache.thrift7.TBase<deactivate_result, deactivate_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("deactivate_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       E((short)1, "e");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -4613,13 +5860,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deactivate_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(deactivate_result.class, metaDataMap);
     }
 
     public deactivate_result() {
@@ -4758,7 +6005,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -4770,26 +6017,26 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -4797,7 +6044,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
@@ -4825,39 +6072,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class rebalance_args implements org.apache.thrift.TBase<rebalance_args, rebalance_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("rebalance_args");
+  public static class rebalance_args implements org.apache.thrift7.TBase<rebalance_args, rebalance_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("rebalance_args");
 
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift.protocol.TField("options", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+    private static final org.apache.thrift7.protocol.TField NAME_FIELD_DESC = new org.apache.thrift7.protocol.TField("name", org.apache.thrift7.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift7.protocol.TField("options", org.apache.thrift7.protocol.TType.STRUCT, (short)2);
 
     private String name; // required
     private RebalanceOptions options; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       NAME((short)1, "name"),
       OPTIONS((short)2, "options");
 
@@ -4919,15 +6166,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift.meta_data.FieldMetaData("options", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, RebalanceOptions.class)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.NAME, new org.apache.thrift7.meta_data.FieldMetaData("name", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift7.meta_data.FieldMetaData("options", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, RebalanceOptions.class)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(rebalance_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(rebalance_args.class, metaDataMap);
     }
 
     public rebalance_args() {
@@ -5122,7 +6369,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_name()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, typedOther.name);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.name, typedOther.name);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -5132,7 +6379,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_options()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.options, typedOther.options);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.options, typedOther.options);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -5144,33 +6391,33 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // NAME
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.name = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 2: // OPTIONS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.options = new RebalanceOptions();
               this.options.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -5178,7 +6425,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -5220,38 +6467,41 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class rebalance_result implements org.apache.thrift.TBase<rebalance_result, rebalance_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("rebalance_result");
+  public static class rebalance_result implements org.apache.thrift7.TBase<rebalance_result, rebalance_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("rebalance_result");
 
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField ITE_FIELD_DESC = new org.apache.thrift7.protocol.TField("ite", org.apache.thrift7.protocol.TType.STRUCT, (short)2);
 
     private NotAliveException e; // required
+    private InvalidTopologyException ite; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      E((short)1, "e");
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      E((short)1, "e"),
+      ITE((short)2, "ite");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -5268,6 +6518,8 @@ public class Nimbus {
         switch(fieldId) {
           case 1: // E
             return E;
+          case 2: // ITE
+            return ITE;
           default:
             return null;
         }
@@ -5309,23 +6561,27 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
+      tmpMap.put(_Fields.ITE, new org.apache.thrift7.meta_data.FieldMetaData("ite", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(rebalance_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(rebalance_result.class, metaDataMap);
     }
 
     public rebalance_result() {
     }
 
     public rebalance_result(
-      NotAliveException e)
+      NotAliveException e,
+      InvalidTopologyException ite)
     {
       this();
       this.e = e;
+      this.ite = ite;
     }
 
     /**
@@ -5334,6 +6590,9 @@ public class Nimbus {
     public rebalance_result(rebalance_result other) {
       if (other.is_set_e()) {
         this.e = new NotAliveException(other.e);
+      }
+      if (other.is_set_ite()) {
+        this.ite = new InvalidTopologyException(other.ite);
       }
     }
 
@@ -5344,6 +6603,7 @@ public class Nimbus {
     @Override
     public void clear() {
       this.e = null;
+      this.ite = null;
     }
 
     public NotAliveException get_e() {
@@ -5369,6 +6629,29 @@ public class Nimbus {
       }
     }
 
+    public InvalidTopologyException get_ite() {
+      return this.ite;
+    }
+
+    public void set_ite(InvalidTopologyException ite) {
+      this.ite = ite;
+    }
+
+    public void unset_ite() {
+      this.ite = null;
+    }
+
+    /** Returns true if field ite is set (has been assigned a value) and false otherwise */
+    public boolean is_set_ite() {
+      return this.ite != null;
+    }
+
+    public void set_ite_isSet(boolean value) {
+      if (!value) {
+        this.ite = null;
+      }
+    }
+
     public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case E:
@@ -5379,6 +6662,14 @@ public class Nimbus {
         }
         break;
 
+      case ITE:
+        if (value == null) {
+          unset_ite();
+        } else {
+          set_ite((InvalidTopologyException)value);
+        }
+        break;
+
       }
     }
 
@@ -5386,6 +6677,9 @@ public class Nimbus {
       switch (field) {
       case E:
         return get_e();
+
+      case ITE:
+        return get_ite();
 
       }
       throw new IllegalStateException();
@@ -5400,6 +6694,8 @@ public class Nimbus {
       switch (field) {
       case E:
         return is_set_e();
+      case ITE:
+        return is_set_ite();
       }
       throw new IllegalStateException();
     }
@@ -5426,6 +6722,15 @@ public class Nimbus {
           return false;
       }
 
+      boolean this_present_ite = true && this.is_set_ite();
+      boolean that_present_ite = true && that.is_set_ite();
+      if (this_present_ite || that_present_ite) {
+        if (!(this_present_ite && that_present_ite))
+          return false;
+        if (!this.ite.equals(that.ite))
+          return false;
+      }
+
       return true;
     }
 
@@ -5437,6 +6742,11 @@ public class Nimbus {
       builder.append(present_e);
       if (present_e)
         builder.append(e);
+
+      boolean present_ite = true && (is_set_ite());
+      builder.append(present_ite);
+      if (present_ite)
+        builder.append(ite);
 
       return builder.toHashCode();
     }
@@ -5454,7 +6764,17 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_ite()).compareTo(typedOther.is_set_ite());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_ite()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.ite, typedOther.ite);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -5466,26 +6786,34 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 2: // ITE
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.ite = new InvalidTopologyException();
+              this.ite.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -5493,12 +6821,16 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_e()) {
         oprot.writeFieldBegin(E_FIELD_DESC);
         this.e.write(oprot);
+        oprot.writeFieldEnd();
+      } else if (this.is_set_ite()) {
+        oprot.writeFieldBegin(ITE_FIELD_DESC);
+        this.ite.write(oprot);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -5517,39 +6849,47 @@ public class Nimbus {
         sb.append(this.e);
       }
       first = false;
+      if (!first) sb.append(", ");
+      sb.append("ite:");
+      if (this.ite == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.ite);
+      }
+      first = false;
       sb.append(")");
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class beginFileUpload_args implements org.apache.thrift.TBase<beginFileUpload_args, beginFileUpload_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("beginFileUpload_args");
+  public static class beginFileUpload_args implements org.apache.thrift7.TBase<beginFileUpload_args, beginFileUpload_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("beginFileUpload_args");
 
 
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
 ;
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -5603,11 +6943,11 @@ public class Nimbus {
         return _fieldName;
       }
     }
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(beginFileUpload_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(beginFileUpload_args.class, metaDataMap);
     }
 
     public beginFileUpload_args() {
@@ -5687,18 +7027,18 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -5706,7 +7046,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -5723,37 +7063,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class beginFileUpload_result implements org.apache.thrift.TBase<beginFileUpload_result, beginFileUpload_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("beginFileUpload_result");
+  public static class beginFileUpload_result implements org.apache.thrift7.TBase<beginFileUpload_result, beginFileUpload_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("beginFileUpload_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRING, (short)0);
 
     private String success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -5812,13 +7152,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(beginFileUpload_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(beginFileUpload_result.class, metaDataMap);
     }
 
     public beginFileUpload_result() {
@@ -5957,7 +7297,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -5969,25 +7309,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.success = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -5995,7 +7335,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -6023,39 +7363,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class uploadChunk_args implements org.apache.thrift.TBase<uploadChunk_args, uploadChunk_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("uploadChunk_args");
+  public static class uploadChunk_args implements org.apache.thrift7.TBase<uploadChunk_args, uploadChunk_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("uploadChunk_args");
 
-    private static final org.apache.thrift.protocol.TField LOCATION_FIELD_DESC = new org.apache.thrift.protocol.TField("location", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField CHUNK_FIELD_DESC = new org.apache.thrift.protocol.TField("chunk", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift7.protocol.TField LOCATION_FIELD_DESC = new org.apache.thrift7.protocol.TField("location", org.apache.thrift7.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField CHUNK_FIELD_DESC = new org.apache.thrift7.protocol.TField("chunk", org.apache.thrift7.protocol.TType.STRING, (short)2);
 
     private String location; // required
     private ByteBuffer chunk; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       LOCATION((short)1, "location"),
       CHUNK((short)2, "chunk");
 
@@ -6117,15 +7457,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.LOCATION, new org.apache.thrift.meta_data.FieldMetaData("location", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.CHUNK, new org.apache.thrift.meta_data.FieldMetaData("chunk", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING          , true)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.LOCATION, new org.apache.thrift7.meta_data.FieldMetaData("location", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.CHUNK, new org.apache.thrift7.meta_data.FieldMetaData("chunk", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING          , true)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(uploadChunk_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(uploadChunk_args.class, metaDataMap);
     }
 
     public uploadChunk_args() {
@@ -6148,7 +7488,7 @@ public class Nimbus {
         this.location = other.location;
       }
       if (other.is_set_chunk()) {
-        this.chunk = org.apache.thrift.TBaseHelper.copyBinary(other.chunk);
+        this.chunk = org.apache.thrift7.TBaseHelper.copyBinary(other.chunk);
 ;
       }
     }
@@ -6187,7 +7527,7 @@ public class Nimbus {
     }
 
     public byte[] get_chunk() {
-      set_chunk(org.apache.thrift.TBaseHelper.rightSize(chunk));
+      set_chunk(org.apache.thrift7.TBaseHelper.rightSize(chunk));
       return chunk == null ? null : chunk.array();
     }
 
@@ -6330,7 +7670,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_location()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.location, typedOther.location);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.location, typedOther.location);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -6340,7 +7680,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_chunk()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.chunk, typedOther.chunk);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.chunk, typedOther.chunk);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -6352,32 +7692,32 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // LOCATION
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.location = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 2: // CHUNK
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.chunk = iprot.readBinary();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -6385,7 +7725,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -6420,42 +7760,42 @@ public class Nimbus {
       if (this.chunk == null) {
         sb.append("null");
       } else {
-        org.apache.thrift.TBaseHelper.toString(this.chunk, sb);
+        org.apache.thrift7.TBaseHelper.toString(this.chunk, sb);
       }
       first = false;
       sb.append(")");
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class uploadChunk_result implements org.apache.thrift.TBase<uploadChunk_result, uploadChunk_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("uploadChunk_result");
+  public static class uploadChunk_result implements org.apache.thrift7.TBase<uploadChunk_result, uploadChunk_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("uploadChunk_result");
 
 
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
 ;
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -6509,11 +7849,11 @@ public class Nimbus {
         return _fieldName;
       }
     }
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(uploadChunk_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(uploadChunk_result.class, metaDataMap);
     }
 
     public uploadChunk_result() {
@@ -6593,18 +7933,18 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -6612,7 +7952,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       oprot.writeFieldStop();
@@ -6628,37 +7968,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class finishFileUpload_args implements org.apache.thrift.TBase<finishFileUpload_args, finishFileUpload_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("finishFileUpload_args");
+  public static class finishFileUpload_args implements org.apache.thrift7.TBase<finishFileUpload_args, finishFileUpload_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("finishFileUpload_args");
 
-    private static final org.apache.thrift.protocol.TField LOCATION_FIELD_DESC = new org.apache.thrift.protocol.TField("location", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField LOCATION_FIELD_DESC = new org.apache.thrift7.protocol.TField("location", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String location; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       LOCATION((short)1, "location");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -6717,13 +8057,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.LOCATION, new org.apache.thrift.meta_data.FieldMetaData("location", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.LOCATION, new org.apache.thrift7.meta_data.FieldMetaData("location", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(finishFileUpload_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(finishFileUpload_args.class, metaDataMap);
     }
 
     public finishFileUpload_args() {
@@ -6862,7 +8202,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_location()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.location, typedOther.location);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.location, typedOther.location);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -6874,25 +8214,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // LOCATION
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.location = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -6900,7 +8240,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -6929,35 +8269,35 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class finishFileUpload_result implements org.apache.thrift.TBase<finishFileUpload_result, finishFileUpload_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("finishFileUpload_result");
+  public static class finishFileUpload_result implements org.apache.thrift7.TBase<finishFileUpload_result, finishFileUpload_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("finishFileUpload_result");
 
 
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
 ;
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -7011,11 +8351,11 @@ public class Nimbus {
         return _fieldName;
       }
     }
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(finishFileUpload_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(finishFileUpload_result.class, metaDataMap);
     }
 
     public finishFileUpload_result() {
@@ -7095,18 +8435,18 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -7114,7 +8454,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       oprot.writeFieldStop();
@@ -7130,37 +8470,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class beginFileDownload_args implements org.apache.thrift.TBase<beginFileDownload_args, beginFileDownload_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("beginFileDownload_args");
+  public static class beginFileDownload_args implements org.apache.thrift7.TBase<beginFileDownload_args, beginFileDownload_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("beginFileDownload_args");
 
-    private static final org.apache.thrift.protocol.TField FILE_FIELD_DESC = new org.apache.thrift.protocol.TField("file", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField FILE_FIELD_DESC = new org.apache.thrift7.protocol.TField("file", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String file; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       FILE((short)1, "file");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -7219,13 +8559,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.FILE, new org.apache.thrift.meta_data.FieldMetaData("file", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.FILE, new org.apache.thrift7.meta_data.FieldMetaData("file", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(beginFileDownload_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(beginFileDownload_args.class, metaDataMap);
     }
 
     public beginFileDownload_args() {
@@ -7364,7 +8704,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_file()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.file, typedOther.file);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.file, typedOther.file);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -7376,25 +8716,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // FILE
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.file = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -7402,7 +8742,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -7431,37 +8771,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class beginFileDownload_result implements org.apache.thrift.TBase<beginFileDownload_result, beginFileDownload_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("beginFileDownload_result");
+  public static class beginFileDownload_result implements org.apache.thrift7.TBase<beginFileDownload_result, beginFileDownload_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("beginFileDownload_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRING, (short)0);
 
     private String success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -7520,13 +8860,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(beginFileDownload_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(beginFileDownload_result.class, metaDataMap);
     }
 
     public beginFileDownload_result() {
@@ -7665,7 +9005,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -7677,25 +9017,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.success = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -7703,7 +9043,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -7731,37 +9071,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class downloadChunk_args implements org.apache.thrift.TBase<downloadChunk_args, downloadChunk_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("downloadChunk_args");
+  public static class downloadChunk_args implements org.apache.thrift7.TBase<downloadChunk_args, downloadChunk_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("downloadChunk_args");
 
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField ID_FIELD_DESC = new org.apache.thrift7.protocol.TField("id", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       ID((short)1, "id");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -7820,13 +9160,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift7.meta_data.FieldMetaData("id", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(downloadChunk_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(downloadChunk_args.class, metaDataMap);
     }
 
     public downloadChunk_args() {
@@ -7965,7 +9305,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, typedOther.id);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.id, typedOther.id);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -7977,25 +9317,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // ID
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.id = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -8003,7 +9343,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -8032,37 +9372,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class downloadChunk_result implements org.apache.thrift.TBase<downloadChunk_result, downloadChunk_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("downloadChunk_result");
+  public static class downloadChunk_result implements org.apache.thrift7.TBase<downloadChunk_result, downloadChunk_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("downloadChunk_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRING, (short)0);
 
     private ByteBuffer success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -8121,13 +9461,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING          , true)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING          , true)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(downloadChunk_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(downloadChunk_result.class, metaDataMap);
     }
 
     public downloadChunk_result() {
@@ -8145,7 +9485,7 @@ public class Nimbus {
      */
     public downloadChunk_result(downloadChunk_result other) {
       if (other.is_set_success()) {
-        this.success = org.apache.thrift.TBaseHelper.copyBinary(other.success);
+        this.success = org.apache.thrift7.TBaseHelper.copyBinary(other.success);
 ;
       }
     }
@@ -8160,7 +9500,7 @@ public class Nimbus {
     }
 
     public byte[] get_success() {
-      set_success(org.apache.thrift.TBaseHelper.rightSize(success));
+      set_success(org.apache.thrift7.TBaseHelper.rightSize(success));
       return success == null ? null : success.array();
     }
 
@@ -8276,7 +9616,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -8288,25 +9628,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.success = iprot.readBinary();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -8314,7 +9654,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -8335,42 +9675,42 @@ public class Nimbus {
       if (this.success == null) {
         sb.append("null");
       } else {
-        org.apache.thrift.TBaseHelper.toString(this.success, sb);
+        org.apache.thrift7.TBaseHelper.toString(this.success, sb);
       }
       first = false;
       sb.append(")");
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getClusterInfo_args implements org.apache.thrift.TBase<getClusterInfo_args, getClusterInfo_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getClusterInfo_args");
+  public static class getNimbusConf_args implements org.apache.thrift7.TBase<getNimbusConf_args, getNimbusConf_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getNimbusConf_args");
 
 
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
 ;
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -8424,11 +9764,513 @@ public class Nimbus {
         return _fieldName;
       }
     }
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getClusterInfo_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getNimbusConf_args.class, metaDataMap);
+    }
+
+    public getNimbusConf_args() {
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getNimbusConf_args(getNimbusConf_args other) {
+    }
+
+    public getNimbusConf_args deepCopy() {
+      return new getNimbusConf_args(this);
+    }
+
+    @Override
+    public void clear() {
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getNimbusConf_args)
+        return this.equals((getNimbusConf_args)that);
+      return false;
+    }
+
+    public boolean equals(getNimbusConf_args that) {
+      if (that == null)
+        return false;
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(getNimbusConf_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      getNimbusConf_args typedOther = (getNimbusConf_args)other;
+
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      validate();
+
+      oprot.writeStructBegin(STRUCT_DESC);
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getNimbusConf_args(");
+      boolean first = true;
+
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class getNimbusConf_result implements org.apache.thrift7.TBase<getNimbusConf_result, getNimbusConf_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getNimbusConf_result");
+
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRING, (short)0);
+
+    private String success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getNimbusConf_result.class, metaDataMap);
+    }
+
+    public getNimbusConf_result() {
+    }
+
+    public getNimbusConf_result(
+      String success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getNimbusConf_result(getNimbusConf_result other) {
+      if (other.is_set_success()) {
+        this.success = other.success;
+      }
+    }
+
+    public getNimbusConf_result deepCopy() {
+      return new getNimbusConf_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    public String get_success() {
+      return this.success;
+    }
+
+    public void set_success(String success) {
+      this.success = success;
+    }
+
+    public void unset_success() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean is_set_success() {
+      return this.success != null;
+    }
+
+    public void set_success_isSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unset_success();
+        } else {
+          set_success((String)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return get_success();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return is_set_success();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getNimbusConf_result)
+        return this.equals((getNimbusConf_result)that);
+      return false;
+    }
+
+    public boolean equals(getNimbusConf_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true && this.is_set_success();
+      boolean that_present_success = true && that.is_set_success();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      boolean present_success = true && (is_set_success());
+      builder.append(present_success);
+      if (present_success)
+        builder.append(success);
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(getNimbusConf_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      getNimbusConf_result typedOther = (getNimbusConf_result)other;
+
+      lastComparison = Boolean.valueOf(is_set_success()).compareTo(typedOther.is_set_success());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_success()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          case 0: // SUCCESS
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
+              this.success = iprot.readString();
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      oprot.writeStructBegin(STRUCT_DESC);
+
+      if (this.is_set_success()) {
+        oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+        oprot.writeString(this.success);
+        oprot.writeFieldEnd();
+      }
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getNimbusConf_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class getClusterInfo_args implements org.apache.thrift7.TBase<getClusterInfo_args, getClusterInfo_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getClusterInfo_args");
+
+
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+;
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getClusterInfo_args.class, metaDataMap);
     }
 
     public getClusterInfo_args() {
@@ -8508,18 +10350,18 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -8527,7 +10369,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -8544,37 +10386,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getClusterInfo_result implements org.apache.thrift.TBase<getClusterInfo_result, getClusterInfo_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getClusterInfo_result");
+  public static class getClusterInfo_result implements org.apache.thrift7.TBase<getClusterInfo_result, getClusterInfo_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getClusterInfo_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRUCT, (short)0);
 
     private ClusterSummary success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -8633,13 +10475,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ClusterSummary.class)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, ClusterSummary.class)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getClusterInfo_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getClusterInfo_result.class, metaDataMap);
     }
 
     public getClusterInfo_result() {
@@ -8778,7 +10620,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -8790,26 +10632,26 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.success = new ClusterSummary();
               this.success.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -8817,7 +10659,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -8845,37 +10687,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getTopologyInfo_args implements org.apache.thrift.TBase<getTopologyInfo_args, getTopologyInfo_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopologyInfo_args");
+  public static class getTopologyInfo_args implements org.apache.thrift7.TBase<getTopologyInfo_args, getTopologyInfo_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopologyInfo_args");
 
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField ID_FIELD_DESC = new org.apache.thrift7.protocol.TField("id", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       ID((short)1, "id");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -8934,13 +10776,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift7.meta_data.FieldMetaData("id", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyInfo_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyInfo_args.class, metaDataMap);
     }
 
     public getTopologyInfo_args() {
@@ -9079,7 +10921,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, typedOther.id);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.id, typedOther.id);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -9091,25 +10933,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // ID
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.id = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -9117,7 +10959,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -9146,39 +10988,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getTopologyInfo_result implements org.apache.thrift.TBase<getTopologyInfo_result, getTopologyInfo_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopologyInfo_result");
+  public static class getTopologyInfo_result implements org.apache.thrift7.TBase<getTopologyInfo_result, getTopologyInfo_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopologyInfo_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private TopologyInfo success; // required
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success"),
       E((short)1, "e");
 
@@ -9240,15 +11082,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TopologyInfo.class)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, TopologyInfo.class)));
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyInfo_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyInfo_result.class, metaDataMap);
     }
 
     public getTopologyInfo_result() {
@@ -9443,7 +11285,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -9453,7 +11295,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -9465,34 +11307,34 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.success = new TopologyInfo();
               this.success.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -9500,7 +11342,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -9540,732 +11382,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getSupervisorWorkers_args implements org.apache.thrift.TBase<getSupervisorWorkers_args, getSupervisorWorkers_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getSupervisorWorkers_args");
+  public static class getTopologyConf_args implements org.apache.thrift7.TBase<getTopologyConf_args, getTopologyConf_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopologyConf_args");
 
-    private static final org.apache.thrift.protocol.TField HOST_FIELD_DESC = new org.apache.thrift.protocol.TField("host", org.apache.thrift.protocol.TType.STRING, (short)1);
-
-    private String host; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      HOST((short)1, "host");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // HOST
-            return HOST;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.HOST, new org.apache.thrift.meta_data.FieldMetaData("host", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getSupervisorWorkers_args.class, metaDataMap);
-    }
-
-    public getSupervisorWorkers_args() {
-    }
-
-    public getSupervisorWorkers_args(
-      String host)
-    {
-      this();
-      this.host = host;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public getSupervisorWorkers_args(getSupervisorWorkers_args other) {
-      if (other.is_set_host()) {
-        this.host = other.host;
-      }
-    }
-
-    public getSupervisorWorkers_args deepCopy() {
-      return new getSupervisorWorkers_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.host = null;
-    }
-
-    public String get_host() {
-      return this.host;
-    }
-
-    public void set_host(String host) {
-      this.host = host;
-    }
-
-    public void unset_host() {
-      this.host = null;
-    }
-
-    /** Returns true if field host is set (has been assigned a value) and false otherwise */
-    public boolean is_set_host() {
-      return this.host != null;
-    }
-
-    public void set_host_isSet(boolean value) {
-      if (!value) {
-        this.host = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case HOST:
-        if (value == null) {
-          unset_host();
-        } else {
-          set_host((String)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case HOST:
-        return get_host();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case HOST:
-        return is_set_host();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof getSupervisorWorkers_args)
-        return this.equals((getSupervisorWorkers_args)that);
-      return false;
-    }
-
-    public boolean equals(getSupervisorWorkers_args that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_host = true && this.is_set_host();
-      boolean that_present_host = true && that.is_set_host();
-      if (this_present_host || that_present_host) {
-        if (!(this_present_host && that_present_host))
-          return false;
-        if (!this.host.equals(that.host))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      HashCodeBuilder builder = new HashCodeBuilder();
-
-      boolean present_host = true && (is_set_host());
-      builder.append(present_host);
-      if (present_host)
-        builder.append(host);
-
-      return builder.toHashCode();
-    }
-
-    public int compareTo(getSupervisorWorkers_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-      getSupervisorWorkers_args typedOther = (getSupervisorWorkers_args)other;
-
-      lastComparison = Boolean.valueOf(is_set_host()).compareTo(typedOther.is_set_host());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (is_set_host()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.host, typedOther.host);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
-      iprot.readStructBegin();
-      while (true)
-      {
-        field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
-          break;
-        }
-        switch (field.id) {
-          case 1: // HOST
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
-              this.host = iprot.readString();
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
-            }
-            break;
-          default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
-        }
-        iprot.readFieldEnd();
-      }
-      iprot.readStructEnd();
-      validate();
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      validate();
-
-      oprot.writeStructBegin(STRUCT_DESC);
-      if (this.host != null) {
-        oprot.writeFieldBegin(HOST_FIELD_DESC);
-        oprot.writeString(this.host);
-        oprot.writeFieldEnd();
-      }
-      oprot.writeFieldStop();
-      oprot.writeStructEnd();
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("getSupervisorWorkers_args(");
-      boolean first = true;
-
-      sb.append("host:");
-      if (this.host == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.host);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-  }
-
-  public static class getSupervisorWorkers_result implements org.apache.thrift.TBase<getSupervisorWorkers_result, getSupervisorWorkers_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getSupervisorWorkers_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-
-    private SupervisorWorkers success; // required
-    private NotAliveException e; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success"),
-      E((short)1, "e");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          case 1: // E
-            return E;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, SupervisorWorkers.class)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getSupervisorWorkers_result.class, metaDataMap);
-    }
-
-    public getSupervisorWorkers_result() {
-    }
-
-    public getSupervisorWorkers_result(
-      SupervisorWorkers success,
-      NotAliveException e)
-    {
-      this();
-      this.success = success;
-      this.e = e;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public getSupervisorWorkers_result(getSupervisorWorkers_result other) {
-      if (other.is_set_success()) {
-        this.success = new SupervisorWorkers(other.success);
-      }
-      if (other.is_set_e()) {
-        this.e = new NotAliveException(other.e);
-      }
-    }
-
-    public getSupervisorWorkers_result deepCopy() {
-      return new getSupervisorWorkers_result(this);
-    }
-
-    @Override
-    public void clear() {
-      this.success = null;
-      this.e = null;
-    }
-
-    public SupervisorWorkers get_success() {
-      return this.success;
-    }
-
-    public void set_success(SupervisorWorkers success) {
-      this.success = success;
-    }
-
-    public void unset_success() {
-      this.success = null;
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean is_set_success() {
-      return this.success != null;
-    }
-
-    public void set_success_isSet(boolean value) {
-      if (!value) {
-        this.success = null;
-      }
-    }
-
-    public NotAliveException get_e() {
-      return this.e;
-    }
-
-    public void set_e(NotAliveException e) {
-      this.e = e;
-    }
-
-    public void unset_e() {
-      this.e = null;
-    }
-
-    /** Returns true if field e is set (has been assigned a value) and false otherwise */
-    public boolean is_set_e() {
-      return this.e != null;
-    }
-
-    public void set_e_isSet(boolean value) {
-      if (!value) {
-        this.e = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unset_success();
-        } else {
-          set_success((SupervisorWorkers)value);
-        }
-        break;
-
-      case E:
-        if (value == null) {
-          unset_e();
-        } else {
-          set_e((NotAliveException)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return get_success();
-
-      case E:
-        return get_e();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return is_set_success();
-      case E:
-        return is_set_e();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof getSupervisorWorkers_result)
-        return this.equals((getSupervisorWorkers_result)that);
-      return false;
-    }
-
-    public boolean equals(getSupervisorWorkers_result that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_success = true && this.is_set_success();
-      boolean that_present_success = true && that.is_set_success();
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (!this.success.equals(that.success))
-          return false;
-      }
-
-      boolean this_present_e = true && this.is_set_e();
-      boolean that_present_e = true && that.is_set_e();
-      if (this_present_e || that_present_e) {
-        if (!(this_present_e && that_present_e))
-          return false;
-        if (!this.e.equals(that.e))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      HashCodeBuilder builder = new HashCodeBuilder();
-
-      boolean present_success = true && (is_set_success());
-      builder.append(present_success);
-      if (present_success)
-        builder.append(success);
-
-      boolean present_e = true && (is_set_e());
-      builder.append(present_e);
-      if (present_e)
-        builder.append(e);
-
-      return builder.toHashCode();
-    }
-
-    public int compareTo(getSupervisorWorkers_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-      getSupervisorWorkers_result typedOther = (getSupervisorWorkers_result)other;
-
-      lastComparison = Boolean.valueOf(is_set_success()).compareTo(typedOther.is_set_success());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(is_set_e()).compareTo(typedOther.is_set_e());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
-      iprot.readStructBegin();
-      while (true)
-      {
-        field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
-          break;
-        }
-        switch (field.id) {
-          case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
-              this.success = new SupervisorWorkers();
-              this.success.read(iprot);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
-            }
-            break;
-          case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
-              this.e = new NotAliveException();
-              this.e.read(iprot);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
-            }
-            break;
-          default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
-        }
-        iprot.readFieldEnd();
-      }
-      iprot.readStructEnd();
-      validate();
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      oprot.writeStructBegin(STRUCT_DESC);
-
-      if (this.is_set_success()) {
-        oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-        this.success.write(oprot);
-        oprot.writeFieldEnd();
-      } else if (this.is_set_e()) {
-        oprot.writeFieldBegin(E_FIELD_DESC);
-        this.e.write(oprot);
-        oprot.writeFieldEnd();
-      }
-      oprot.writeFieldStop();
-      oprot.writeStructEnd();
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("getSupervisorWorkers_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      if (this.success == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.success);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("e:");
-      if (this.e == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.e);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-  }
-
-  public static class getTopologyConf_args implements org.apache.thrift.TBase<getTopologyConf_args, getTopologyConf_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopologyConf_args");
-
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField ID_FIELD_DESC = new org.apache.thrift7.protocol.TField("id", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       ID((short)1, "id");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -10324,13 +11471,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift7.meta_data.FieldMetaData("id", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyConf_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyConf_args.class, metaDataMap);
     }
 
     public getTopologyConf_args() {
@@ -10469,7 +11616,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, typedOther.id);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.id, typedOther.id);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -10481,25 +11628,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // ID
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.id = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -10507,7 +11654,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -10536,39 +11683,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getTopologyConf_result implements org.apache.thrift.TBase<getTopologyConf_result, getTopologyConf_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopologyConf_result");
+  public static class getTopologyConf_result implements org.apache.thrift7.TBase<getTopologyConf_result, getTopologyConf_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopologyConf_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRING, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRING, (short)0);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private String success; // required
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success"),
       E((short)1, "e");
 
@@ -10630,15 +11777,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyConf_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopologyConf_result.class, metaDataMap);
     }
 
     public getTopologyConf_result() {
@@ -10833,7 +11980,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -10843,7 +11990,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -10855,33 +12002,33 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.success = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -10889,7 +12036,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -10929,37 +12076,37 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getTopology_args implements org.apache.thrift.TBase<getTopology_args, getTopology_args._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopology_args");
+  public static class getTopology_args implements org.apache.thrift7.TBase<getTopology_args, getTopology_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopology_args");
 
-    private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift7.protocol.TField ID_FIELD_DESC = new org.apache.thrift7.protocol.TField("id", org.apache.thrift7.protocol.TType.STRING, (short)1);
 
     private String id; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       ID((short)1, "id");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
@@ -11018,13 +12165,13 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift7.meta_data.FieldMetaData("id", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopology_args.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopology_args.class, metaDataMap);
     }
 
     public getTopology_args() {
@@ -11163,7 +12310,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, typedOther.id);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.id, typedOther.id);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -11175,25 +12322,25 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 1: // ID
-            if (field.type == org.apache.thrift.protocol.TType.STRING) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
               this.id = iprot.readString();
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -11201,7 +12348,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
@@ -11230,39 +12377,39 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
   }
 
-  public static class getTopology_result implements org.apache.thrift.TBase<getTopology_result, getTopology_result._Fields>, java.io.Serializable, Cloneable   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getTopology_result");
+  public static class getTopology_result implements org.apache.thrift7.TBase<getTopology_result, getTopology_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getTopology_result");
 
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
 
     private StormTopology success; // required
     private NotAliveException e; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
       SUCCESS((short)0, "success"),
       E((short)1, "e");
 
@@ -11324,15 +12471,15 @@ public class Nimbus {
 
     // isset id assignments
 
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
     static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, StormTopology.class)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, StormTopology.class)));
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getTopology_result.class, metaDataMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getTopology_result.class, metaDataMap);
     }
 
     public getTopology_result() {
@@ -11527,7 +12674,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_success()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, typedOther.success);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -11537,7 +12684,7 @@ public class Nimbus {
         return lastComparison;
       }
       if (is_set_e()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, typedOther.e);
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -11549,34 +12696,34 @@ public class Nimbus {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      org.apache.thrift.protocol.TField field;
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
       iprot.readStructBegin();
       while (true)
       {
         field = iprot.readFieldBegin();
-        if (field.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
           break;
         }
         switch (field.id) {
           case 0: // SUCCESS
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.success = new StormTopology();
               this.success.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case 1: // E
-            if (field.type == org.apache.thrift.protocol.TType.STRUCT) {
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
               this.e = new NotAliveException();
               this.e.read(iprot);
             } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             }
             break;
           default:
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
         }
         iprot.readFieldEnd();
       }
@@ -11584,7 +12731,7 @@ public class Nimbus {
       validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
       oprot.writeStructBegin(STRUCT_DESC);
 
       if (this.is_set_success()) {
@@ -11624,22 +12771,717 @@ public class Nimbus {
       return sb.toString();
     }
 
-    public void validate() throws org.apache.thrift.TException {
+    public void validate() throws org.apache.thrift7.TException {
       // check for required fields
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
       try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }
 
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
       try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class getUserTopology_args implements org.apache.thrift7.TBase<getUserTopology_args, getUserTopology_args._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getUserTopology_args");
+
+    private static final org.apache.thrift7.protocol.TField ID_FIELD_DESC = new org.apache.thrift7.protocol.TField("id", org.apache.thrift7.protocol.TType.STRING, (short)1);
+
+    private String id; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      ID((short)1, "id");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // ID
+            return ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.ID, new org.apache.thrift7.meta_data.FieldMetaData("id", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getUserTopology_args.class, metaDataMap);
+    }
+
+    public getUserTopology_args() {
+    }
+
+    public getUserTopology_args(
+      String id)
+    {
+      this();
+      this.id = id;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getUserTopology_args(getUserTopology_args other) {
+      if (other.is_set_id()) {
+        this.id = other.id;
+      }
+    }
+
+    public getUserTopology_args deepCopy() {
+      return new getUserTopology_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.id = null;
+    }
+
+    public String get_id() {
+      return this.id;
+    }
+
+    public void set_id(String id) {
+      this.id = id;
+    }
+
+    public void unset_id() {
+      this.id = null;
+    }
+
+    /** Returns true if field id is set (has been assigned a value) and false otherwise */
+    public boolean is_set_id() {
+      return this.id != null;
+    }
+
+    public void set_id_isSet(boolean value) {
+      if (!value) {
+        this.id = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case ID:
+        if (value == null) {
+          unset_id();
+        } else {
+          set_id((String)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case ID:
+        return get_id();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case ID:
+        return is_set_id();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getUserTopology_args)
+        return this.equals((getUserTopology_args)that);
+      return false;
+    }
+
+    public boolean equals(getUserTopology_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_id = true && this.is_set_id();
+      boolean that_present_id = true && that.is_set_id();
+      if (this_present_id || that_present_id) {
+        if (!(this_present_id && that_present_id))
+          return false;
+        if (!this.id.equals(that.id))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      boolean present_id = true && (is_set_id());
+      builder.append(present_id);
+      if (present_id)
+        builder.append(id);
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(getUserTopology_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      getUserTopology_args typedOther = (getUserTopology_args)other;
+
+      lastComparison = Boolean.valueOf(is_set_id()).compareTo(typedOther.is_set_id());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_id()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.id, typedOther.id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          case 1: // ID
+            if (field.type == org.apache.thrift7.protocol.TType.STRING) {
+              this.id = iprot.readString();
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      validate();
+
+      oprot.writeStructBegin(STRUCT_DESC);
+      if (this.id != null) {
+        oprot.writeFieldBegin(ID_FIELD_DESC);
+        oprot.writeString(this.id);
+        oprot.writeFieldEnd();
+      }
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getUserTopology_args(");
+      boolean first = true;
+
+      sb.append("id:");
+      if (this.id == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.id);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+  }
+
+  public static class getUserTopology_result implements org.apache.thrift7.TBase<getUserTopology_result, getUserTopology_result._Fields>, java.io.Serializable, Cloneable   {
+    private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("getUserTopology_result");
+
+    private static final org.apache.thrift7.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift7.protocol.TField("success", org.apache.thrift7.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift7.protocol.TField E_FIELD_DESC = new org.apache.thrift7.protocol.TField("e", org.apache.thrift7.protocol.TType.STRUCT, (short)1);
+
+    private StormTopology success; // required
+    private NotAliveException e; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      E((short)1, "e");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // E
+            return E;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+
+    public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift7.meta_data.FieldMetaData("success", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.StructMetaData(org.apache.thrift7.protocol.TType.STRUCT, StormTopology.class)));
+      tmpMap.put(_Fields.E, new org.apache.thrift7.meta_data.FieldMetaData("e", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(getUserTopology_result.class, metaDataMap);
+    }
+
+    public getUserTopology_result() {
+    }
+
+    public getUserTopology_result(
+      StormTopology success,
+      NotAliveException e)
+    {
+      this();
+      this.success = success;
+      this.e = e;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public getUserTopology_result(getUserTopology_result other) {
+      if (other.is_set_success()) {
+        this.success = new StormTopology(other.success);
+      }
+      if (other.is_set_e()) {
+        this.e = new NotAliveException(other.e);
+      }
+    }
+
+    public getUserTopology_result deepCopy() {
+      return new getUserTopology_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+      this.e = null;
+    }
+
+    public StormTopology get_success() {
+      return this.success;
+    }
+
+    public void set_success(StormTopology success) {
+      this.success = success;
+    }
+
+    public void unset_success() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean is_set_success() {
+      return this.success != null;
+    }
+
+    public void set_success_isSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public NotAliveException get_e() {
+      return this.e;
+    }
+
+    public void set_e(NotAliveException e) {
+      this.e = e;
+    }
+
+    public void unset_e() {
+      this.e = null;
+    }
+
+    /** Returns true if field e is set (has been assigned a value) and false otherwise */
+    public boolean is_set_e() {
+      return this.e != null;
+    }
+
+    public void set_e_isSet(boolean value) {
+      if (!value) {
+        this.e = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unset_success();
+        } else {
+          set_success((StormTopology)value);
+        }
+        break;
+
+      case E:
+        if (value == null) {
+          unset_e();
+        } else {
+          set_e((NotAliveException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return get_success();
+
+      case E:
+        return get_e();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return is_set_success();
+      case E:
+        return is_set_e();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof getUserTopology_result)
+        return this.equals((getUserTopology_result)that);
+      return false;
+    }
+
+    public boolean equals(getUserTopology_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true && this.is_set_success();
+      boolean that_present_success = true && that.is_set_success();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      boolean this_present_e = true && this.is_set_e();
+      boolean that_present_e = true && that.is_set_e();
+      if (this_present_e || that_present_e) {
+        if (!(this_present_e && that_present_e))
+          return false;
+        if (!this.e.equals(that.e))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder builder = new HashCodeBuilder();
+
+      boolean present_success = true && (is_set_success());
+      builder.append(present_success);
+      if (present_success)
+        builder.append(success);
+
+      boolean present_e = true && (is_set_e());
+      builder.append(present_e);
+      if (present_e)
+        builder.append(e);
+
+      return builder.toHashCode();
+    }
+
+    public int compareTo(getUserTopology_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+      getUserTopology_result typedOther = (getUserTopology_result)other;
+
+      lastComparison = Boolean.valueOf(is_set_success()).compareTo(typedOther.is_set_success());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_success()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.success, typedOther.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(is_set_e()).compareTo(typedOther.is_set_e());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (is_set_e()) {
+        lastComparison = org.apache.thrift7.TBaseHelper.compareTo(this.e, typedOther.e);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift7.protocol.TProtocol iprot) throws org.apache.thrift7.TException {
+      org.apache.thrift7.protocol.TField field;
+      iprot.readStructBegin();
+      while (true)
+      {
+        field = iprot.readFieldBegin();
+        if (field.type == org.apache.thrift7.protocol.TType.STOP) { 
+          break;
+        }
+        switch (field.id) {
+          case 0: // SUCCESS
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.success = new StormTopology();
+              this.success.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          case 1: // E
+            if (field.type == org.apache.thrift7.protocol.TType.STRUCT) {
+              this.e = new NotAliveException();
+              this.e.read(iprot);
+            } else { 
+              org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+            }
+            break;
+          default:
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
+        }
+        iprot.readFieldEnd();
+      }
+      iprot.readStructEnd();
+      validate();
+    }
+
+    public void write(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
+      oprot.writeStructBegin(STRUCT_DESC);
+
+      if (this.is_set_success()) {
+        oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+        this.success.write(oprot);
+        oprot.writeFieldEnd();
+      } else if (this.is_set_e()) {
+        oprot.writeFieldBegin(E_FIELD_DESC);
+        this.e.write(oprot);
+        oprot.writeFieldEnd();
+      }
+      oprot.writeFieldStop();
+      oprot.writeStructEnd();
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("getUserTopology_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("e:");
+      if (this.e == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.e);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift7.TException {
+      // check for required fields
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift7.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift7.TException te) {
         throw new java.io.IOException(te);
       }
     }

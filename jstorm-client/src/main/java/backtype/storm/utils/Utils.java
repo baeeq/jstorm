@@ -8,7 +8,7 @@ import clojure.lang.IFn;
 import clojure.lang.RT;
 import com.netflix.curator.framework.CuratorFramework;
 import com.netflix.curator.framework.CuratorFrameworkFactory;
-import com.netflix.curator.retry.RetryNTimes;
+import com.netflix.curator.retry.ExponentialBackoffRetry;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -23,19 +23,29 @@ import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
-import org.apache.thrift.TException;
+import org.apache.thrift7.TException;
 import org.json.simple.JSONValue;
 import org.yaml.snakeyaml.Yaml;
 
 public class Utils {
     public static final String DEFAULT_STREAM_ID = "default";
 
+    public static Object newInstance(String klass) {
+        try {
+            Class c = Class.forName(klass);
+            return c.newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     public static byte[] serialize(Object obj) {
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -97,15 +107,16 @@ public class Utils {
 
     public static Map findAndReadConfigFile(String name, boolean mustExist) {
         try {
-            List<URL> resources = findResources(name);
+            HashSet<URL> resources = new HashSet<URL>(findResources(name));
             if(resources.isEmpty()) {
                 if(mustExist) throw new RuntimeException("Could not find config file on classpath " + name);
                 else return new HashMap();
             }
             if(resources.size() > 1) {
-                throw new RuntimeException("Found multiple " + name + " resources");
+                throw new RuntimeException("Found multiple " + name + " resources. You're probably bundling the Storm jars with your topology jar. "
+                  + resources);
             }
-            URL resource = resources.get(0);
+            URL resource = resources.iterator().next();
             Yaml yaml = new Yaml();
             Map ret = (Map) yaml.load(new InputStreamReader(resource.openStream()));
             if(ret==null) ret = new HashMap();
@@ -144,7 +155,13 @@ public class Utils {
 
     public static Map readStormConfig() {
         Map ret = readDefaultConfig();
-        Map storm = findAndReadConfigFile("storm.yaml", false);
+        String confFile = System.getProperty("storm.conf.file");
+        Map storm;
+        if (confFile==null || confFile.equals("")) {
+            storm = findAndReadConfigFile("storm.yaml", false);
+        } else {
+            storm = findAndReadConfigFile(confFile, true);
+        }
         ret.putAll(storm);
         ret.putAll(readCommandLineOpts());
         return ret;
@@ -263,22 +280,57 @@ public class Utils {
         }
     }
     
-    public static long randomLong() {
+    public static long secureRandomLong() {
         return UUID.randomUUID().getLeastSignificantBits();
     }
     
+    
     public static CuratorFramework newCurator(Map conf, List<String> servers, Object port, String root) {
+        return newCurator(conf, servers, port, root, null);
+    }
+
+    public static class BoundedExponentialBackoffRetry extends ExponentialBackoffRetry {
+
+        protected final int maxRetryInterval;
+
+        public BoundedExponentialBackoffRetry(int baseSleepTimeMs, 
+                int maxRetries, int maxSleepTimeMs) {
+            super(baseSleepTimeMs, maxRetries);
+            this.maxRetryInterval = maxSleepTimeMs;
+        }
+
+        public int getMaxRetryInterval() {
+            return this.maxRetryInterval;
+        }
+
+        @Override
+        public int getSleepTimeMs(int count, long elapsedMs)
+        {
+            return Math.min(maxRetryInterval,
+                    super.getSleepTimeMs(count, elapsedMs));
+        }
+
+    }
+
+    public static CuratorFramework newCurator(Map conf, List<String> servers, Object port, String root, ZookeeperAuthInfo auth) {
         List<String> serverPorts = new ArrayList<String>();
         for(String zkServer: (List<String>) servers) {
             serverPorts.add(zkServer + ":" + Utils.getInt(port));
         }
-        String zkStr = StringUtils.join(serverPorts, ",") + root; 
+        String zkStr = StringUtils.join(serverPorts, ",") + root;
         try {
-            CuratorFramework ret =  CuratorFrameworkFactory.newClient(zkStr,
-                                        Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT)),
-                                        15000, new RetryNTimes(Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_RETRY_TIMES)),
-                                                               Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_RETRY_INTERVAL))));
-            return ret;
+            CuratorFrameworkFactory.Builder builder = CuratorFrameworkFactory.builder()
+                    .connectString(zkStr)
+                    .connectionTimeoutMs(Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_CONNECTION_TIMEOUT)))
+                    .sessionTimeoutMs(Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_SESSION_TIMEOUT)))
+                    .retryPolicy(new BoundedExponentialBackoffRetry(
+                                Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_RETRY_INTERVAL)),
+                                Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_RETRY_TIMES)),
+                                Utils.getInt(conf.get(Config.STORM_ZOOKEEPER_RETRY_INTERVAL_CEILING))));
+            if(auth!=null && auth.scheme!=null) {
+                builder = builder.authorization(auth.scheme, auth.payload);
+            }
+            return builder.build();
         } catch (IOException e) {
            throw new RuntimeException(e);
         }
@@ -331,5 +383,16 @@ public class Utils {
         byte[] ret = new byte[buffer.remaining()];
         buffer.get(ret, 0, ret.length);
         return ret;
+    }
+
+    public static boolean exceptionCauseIsInstanceOf(Class klass, Throwable throwable) {
+        Throwable t = throwable;
+        while(t != null) {
+            if(klass.isInstance(t)) {
+                return true;
+            }
+            t = t.getCause();
+        }
+        return false;
     }
 }

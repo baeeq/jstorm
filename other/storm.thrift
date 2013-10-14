@@ -112,16 +112,18 @@ struct TopologySummary {
   1: required string id;
   2: required string name;
   3: required i32 num_tasks;
-  4: required i32 num_workers;
-  5: required i32 uptime_secs;
-  6: required string status;
+  4: required i32 num_executors;
+  5: required i32 num_workers;
+  6: required i32 uptime_secs;
+  7: required string status;
 }
 
 struct SupervisorSummary {
   1: required string host;
   2: required i32 uptime_secs;
   3: required i32 num_workers;
-  4: required i32 num_used_workers;  
+  4: required i32 num_used_workers;
+  5: required string supervisor_id;
 }
 
 struct ClusterSummary {

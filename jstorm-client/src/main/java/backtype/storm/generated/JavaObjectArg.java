@@ -21,17 +21,17 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaObjectArg._Fields> {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("JavaObjectArg");
-  private static final org.apache.thrift.protocol.TField INT_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("int_arg", org.apache.thrift.protocol.TType.I32, (short)1);
-  private static final org.apache.thrift.protocol.TField LONG_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("long_arg", org.apache.thrift.protocol.TType.I64, (short)2);
-  private static final org.apache.thrift.protocol.TField STRING_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("string_arg", org.apache.thrift.protocol.TType.STRING, (short)3);
-  private static final org.apache.thrift.protocol.TField BOOL_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("bool_arg", org.apache.thrift.protocol.TType.BOOL, (short)4);
-  private static final org.apache.thrift.protocol.TField BINARY_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("binary_arg", org.apache.thrift.protocol.TType.STRING, (short)5);
-  private static final org.apache.thrift.protocol.TField DOUBLE_ARG_FIELD_DESC = new org.apache.thrift.protocol.TField("double_arg", org.apache.thrift.protocol.TType.DOUBLE, (short)6);
+public class JavaObjectArg extends org.apache.thrift7.TUnion<JavaObjectArg, JavaObjectArg._Fields> {
+  private static final org.apache.thrift7.protocol.TStruct STRUCT_DESC = new org.apache.thrift7.protocol.TStruct("JavaObjectArg");
+  private static final org.apache.thrift7.protocol.TField INT_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("int_arg", org.apache.thrift7.protocol.TType.I32, (short)1);
+  private static final org.apache.thrift7.protocol.TField LONG_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("long_arg", org.apache.thrift7.protocol.TType.I64, (short)2);
+  private static final org.apache.thrift7.protocol.TField STRING_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("string_arg", org.apache.thrift7.protocol.TType.STRING, (short)3);
+  private static final org.apache.thrift7.protocol.TField BOOL_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("bool_arg", org.apache.thrift7.protocol.TType.BOOL, (short)4);
+  private static final org.apache.thrift7.protocol.TField BINARY_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("binary_arg", org.apache.thrift7.protocol.TType.STRING, (short)5);
+  private static final org.apache.thrift7.protocol.TField DOUBLE_ARG_FIELD_DESC = new org.apache.thrift7.protocol.TField("double_arg", org.apache.thrift7.protocol.TType.DOUBLE, (short)6);
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-  public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+  public enum _Fields implements org.apache.thrift7.TFieldIdEnum {
     INT_ARG((short)1, "int_arg"),
     LONG_ARG((short)2, "long_arg"),
     STRING_ARG((short)3, "string_arg"),
@@ -103,23 +103,23 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
     }
   }
 
-  public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+  public static final Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> metaDataMap;
   static {
-    Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.INT_ARG, new org.apache.thrift.meta_data.FieldMetaData("int_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.LONG_ARG, new org.apache.thrift.meta_data.FieldMetaData("long_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
-    tmpMap.put(_Fields.STRING_ARG, new org.apache.thrift.meta_data.FieldMetaData("string_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BOOL_ARG, new org.apache.thrift.meta_data.FieldMetaData("bool_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
-    tmpMap.put(_Fields.BINARY_ARG, new org.apache.thrift.meta_data.FieldMetaData("binary_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING        , true)));
-    tmpMap.put(_Fields.DOUBLE_ARG, new org.apache.thrift.meta_data.FieldMetaData("double_arg", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
+    Map<_Fields, org.apache.thrift7.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift7.meta_data.FieldMetaData>(_Fields.class);
+    tmpMap.put(_Fields.INT_ARG, new org.apache.thrift7.meta_data.FieldMetaData("int_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.I32)));
+    tmpMap.put(_Fields.LONG_ARG, new org.apache.thrift7.meta_data.FieldMetaData("long_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.I64)));
+    tmpMap.put(_Fields.STRING_ARG, new org.apache.thrift7.meta_data.FieldMetaData("string_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING)));
+    tmpMap.put(_Fields.BOOL_ARG, new org.apache.thrift7.meta_data.FieldMetaData("bool_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.BOOL)));
+    tmpMap.put(_Fields.BINARY_ARG, new org.apache.thrift7.meta_data.FieldMetaData("binary_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.STRING        , true)));
+    tmpMap.put(_Fields.DOUBLE_ARG, new org.apache.thrift7.meta_data.FieldMetaData("double_arg", org.apache.thrift7.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift7.meta_data.FieldValueMetaData(org.apache.thrift7.protocol.TType.DOUBLE)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(JavaObjectArg.class, metaDataMap);
+    org.apache.thrift7.meta_data.FieldMetaData.addStructMetaDataMap(JavaObjectArg.class, metaDataMap);
   }
 
   public JavaObjectArg() {
@@ -219,7 +219,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   }
 
   @Override
-  protected Object readValue(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TField field) throws org.apache.thrift.TException {
+  protected Object readValue(org.apache.thrift7.protocol.TProtocol iprot, org.apache.thrift7.protocol.TField field) throws org.apache.thrift7.TException {
     _Fields setField = _Fields.findByThriftId(field.id);
     if (setField != null) {
       switch (setField) {
@@ -229,7 +229,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             int_arg = iprot.readI32();
             return int_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         case LONG_ARG:
@@ -238,7 +238,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             long_arg = iprot.readI64();
             return long_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         case STRING_ARG:
@@ -247,7 +247,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             string_arg = iprot.readString();
             return string_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         case BOOL_ARG:
@@ -256,7 +256,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             bool_arg = iprot.readBool();
             return bool_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         case BINARY_ARG:
@@ -265,7 +265,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             binary_arg = iprot.readBinary();
             return binary_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         case DOUBLE_ARG:
@@ -274,20 +274,20 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
             double_arg = iprot.readDouble();
             return double_arg;
           } else {
-            org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+            org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
             return null;
           }
         default:
           throw new IllegalStateException("setField wasn't null, but didn't match any of the case statements!");
       }
     } else {
-      org.apache.thrift.protocol.TProtocolUtil.skip(iprot, field.type);
+      org.apache.thrift7.protocol.TProtocolUtil.skip(iprot, field.type);
       return null;
     }
   }
 
   @Override
-  protected void writeValue(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+  protected void writeValue(org.apache.thrift7.protocol.TProtocol oprot) throws org.apache.thrift7.TException {
     switch (setField_) {
       case INT_ARG:
         Integer int_arg = (Integer)value_;
@@ -319,7 +319,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   }
 
   @Override
-  protected org.apache.thrift.protocol.TField getFieldDesc(_Fields setField) {
+  protected org.apache.thrift7.protocol.TField getFieldDesc(_Fields setField) {
     switch (setField) {
       case INT_ARG:
         return INT_ARG_FIELD_DESC;
@@ -339,7 +339,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   }
 
   @Override
-  protected org.apache.thrift.protocol.TStruct getStructDesc() {
+  protected org.apache.thrift7.protocol.TStruct getStructDesc() {
     return STRUCT_DESC;
   }
 
@@ -407,7 +407,7 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   }
 
   public byte[] get_binary_arg() {
-    set_binary_arg(org.apache.thrift.TBaseHelper.rightSize(buffer_for_binary_arg()));
+    set_binary_arg(org.apache.thrift7.TBaseHelper.rightSize(buffer_for_binary_arg()));
     ByteBuffer b = buffer_for_binary_arg();
     return b == null ? null : b.array();
   }
@@ -487,9 +487,9 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
 
   @Override
   public int compareTo(JavaObjectArg other) {
-    int lastComparison = org.apache.thrift.TBaseHelper.compareTo(getSetField(), other.getSetField());
+    int lastComparison = org.apache.thrift7.TBaseHelper.compareTo(getSetField(), other.getSetField());
     if (lastComparison == 0) {
-      return org.apache.thrift.TBaseHelper.compareTo(getFieldValue(), other.getFieldValue());
+      return org.apache.thrift7.TBaseHelper.compareTo(getFieldValue(), other.getFieldValue());
     }
     return lastComparison;
   }
@@ -499,12 +499,12 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   public int hashCode() {
     HashCodeBuilder hcb = new HashCodeBuilder();
     hcb.append(this.getClass().getName());
-    org.apache.thrift.TFieldIdEnum setField = getSetField();
+    org.apache.thrift7.TFieldIdEnum setField = getSetField();
     if (setField != null) {
       hcb.append(setField.getThriftFieldId());
       Object value = getFieldValue();
-      if (value instanceof org.apache.thrift.TEnum) {
-        hcb.append(((org.apache.thrift.TEnum)getFieldValue()).getValue());
+      if (value instanceof org.apache.thrift7.TEnum) {
+        hcb.append(((org.apache.thrift7.TEnum)getFieldValue()).getValue());
       } else {
         hcb.append(value);
       }
@@ -513,8 +513,8 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
   }
   private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
     try {
-      write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-    } catch (org.apache.thrift.TException te) {
+      write(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(out)));
+    } catch (org.apache.thrift7.TException te) {
       throw new java.io.IOException(te);
     }
   }
@@ -522,8 +522,8 @@ public class JavaObjectArg extends org.apache.thrift.TUnion<JavaObjectArg, JavaO
 
   private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
-      read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-    } catch (org.apache.thrift.TException te) {
+      read(new org.apache.thrift7.protocol.TCompactProtocol(new org.apache.thrift7.transport.TIOStreamTransport(in)));
+    } catch (org.apache.thrift7.TException te) {
       throw new java.io.IOException(te);
     }
   }
