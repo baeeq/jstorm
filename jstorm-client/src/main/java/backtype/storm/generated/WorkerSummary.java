@@ -442,14 +442,14 @@ public class WorkerSummary implements org.apache.thrift.TBase<WorkerSummary, Wor
         case 3: // TASKS
           if (field.type == org.apache.thrift.protocol.TType.LIST) {
             {
-              org.apache.thrift.protocol.TList _list113 = iprot.readListBegin();
-              this.tasks = new ArrayList<TaskSummary>(_list113.size);
-              for (int _i114 = 0; _i114 < _list113.size; ++_i114)
+              org.apache.thrift.protocol.TList _list202 = iprot.readListBegin();
+              this.tasks = new ArrayList<TaskSummary>(_list202.size);
+              for (int _i203 = 0; _i203 < _list202.size; ++_i203)
               {
-                TaskSummary _elem115; // required
-                _elem115 = new TaskSummary();
-                _elem115.read(iprot);
-                this.tasks.add(_elem115);
+                TaskSummary _elem204; // required
+                _elem204 = new TaskSummary();
+                _elem204.read(iprot);
+                this.tasks.add(_elem204);
               }
               iprot.readListEnd();
             }
@@ -482,9 +482,9 @@ public class WorkerSummary implements org.apache.thrift.TBase<WorkerSummary, Wor
       oprot.writeFieldBegin(TASKS_FIELD_DESC);
       {
         oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, this.tasks.size()));
-        for (TaskSummary _iter116 : this.tasks)
+        for (TaskSummary _iter205 : this.tasks)
         {
-          _iter116.write(oprot);
+          _iter205.write(oprot);
         }
         oprot.writeListEnd();
       }
