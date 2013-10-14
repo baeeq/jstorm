@@ -1,6 +1,6 @@
 package com.alipay.dw.jstorm.task.acker;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 
 public class AckObject {
     public Long    val        = null;

@@ -11,10 +11,10 @@ import org.apache.log4j.Logger;
 import backtype.storm.Config;
 import backtype.storm.utils.LocalState;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
 import com.alipay.dw.jstorm.cluster.Common;
 import com.alipay.dw.jstorm.cluster.StormConfig;
-import com.alipay.dw.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.utils.TimeUtils;
 
 /**

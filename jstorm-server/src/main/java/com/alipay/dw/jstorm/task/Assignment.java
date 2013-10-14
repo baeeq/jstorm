@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import com.alipay.dw.jstorm.common.NodePort;
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.NodePort;
 
 /**
  * Assignment of one Toplogy, stored in /ZK-DIR/assignments/{topologyid}

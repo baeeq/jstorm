@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.utils;
+package com.alibaba.jstorm.utils;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;

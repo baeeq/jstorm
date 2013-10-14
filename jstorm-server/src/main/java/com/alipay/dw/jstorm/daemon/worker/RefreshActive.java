@@ -8,12 +8,12 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.Config;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
 import com.alipay.dw.jstorm.cluster.StormBase;
 import com.alipay.dw.jstorm.cluster.StormClusterState;
 import com.alipay.dw.jstorm.daemon.nimbus.StatusType;
 import com.alipay.dw.jstorm.task.TaskShutdownDameon;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 /**
  * Timely check whether topology is active or not from ZK

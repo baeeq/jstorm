@@ -1,7 +1,7 @@
 package com.alipay.dw.jstorm.daemon.worker;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 public class WorkerHaltRunable extends RunnableCallback {
     

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 import backtype.storm.generated.GlobalStreamId;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 
 /**
  *

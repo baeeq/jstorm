@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
-import com.alipay.dw.jstorm.utils.OlderFileFilter;
+import com.alibaba.jstorm.utils.OlderFileFilter;
 
 /**
  * clean /nimbus/inbox jar every 600 seconds

@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.utils.Utils;
 
+import com.alibaba.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
-import com.alipay.dw.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.daemon.supervisor.SupervisorInfo;
 import com.alipay.dw.jstorm.task.Assignment;
 import com.alipay.dw.jstorm.task.TaskInfo;

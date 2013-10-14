@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.common.stats;
+package com.alibaba.jstorm.common.stats;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -13,7 +13,7 @@ import backtype.storm.tuple.MessageId;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.utils.TimeCacheMap;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.daemon.worker.WorkerTransfer;
 import com.alipay.dw.jstorm.stats.CommonStatsRolling;
 import com.alipay.dw.jstorm.task.acker.Acker;

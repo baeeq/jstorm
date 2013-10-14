@@ -8,13 +8,13 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.Config;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.BaseCallback;
 import com.alipay.dw.jstorm.cluster.StormConfig;
 import com.alipay.dw.jstorm.cluster.StormStatus;
 import com.alipay.dw.jstorm.daemon.nimbus.NimbusData;
 import com.alipay.dw.jstorm.daemon.nimbus.StatusType;
 import com.alipay.dw.jstorm.schedule.DelayEventRunnable;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 /**
  * The action when nimbus receive rebalance command.

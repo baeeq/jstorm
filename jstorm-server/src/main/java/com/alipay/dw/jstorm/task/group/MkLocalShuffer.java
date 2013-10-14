@@ -3,8 +3,8 @@ package com.alipay.dw.jstorm.task.group;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
-import com.alipay.dw.jstorm.utils.RandomRange;
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.utils.RandomRange;
 
 public class MkLocalShuffer {
     

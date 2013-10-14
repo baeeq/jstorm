@@ -12,8 +12,8 @@ import backtype.storm.generated.KillOptions;
 import backtype.storm.generated.Nimbus;
 import backtype.storm.generated.NotAliveException;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.cluster.StormConfig;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 /**
  * kill topology client

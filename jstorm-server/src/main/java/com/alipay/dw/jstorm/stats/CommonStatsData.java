@@ -11,8 +11,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import backtype.storm.generated.GlobalStreamId;
 import backtype.storm.generated.TaskStats;
 
-import com.alipay.dw.jstorm.common.stats.StatBuckets;
-import com.alipay.dw.jstorm.common.stats.StaticsType;
+import com.alibaba.jstorm.common.stats.StatBuckets;
+import com.alibaba.jstorm.common.stats.StaticsType;
 
 /**
  * Common stats data

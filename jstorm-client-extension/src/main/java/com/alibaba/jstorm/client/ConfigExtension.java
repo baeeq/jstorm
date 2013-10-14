@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.client;
+package com.alibaba.jstorm.client;
 
 public class ConfigExtension {
     /**

@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.common;
+package com.alibaba.jstorm.common;
 
 import java.io.Serializable;
 

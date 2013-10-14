@@ -9,13 +9,13 @@ import org.apache.thrift.transport.TSocket;
 import backtype.storm.Config;
 import backtype.storm.generated.Nimbus;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.cluster.ClusterState;
 import com.alipay.dw.jstorm.cluster.DistributedClusterState;
 import com.alipay.dw.jstorm.cluster.StormClusterState;
 import com.alipay.dw.jstorm.cluster.StormConfig;
 import com.alipay.dw.jstorm.cluster.StormZkClusterState;
 import com.alipay.dw.jstorm.task.error.TaskError;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 public class PrintStats {
     public static void main(String[] args) throws Exception {

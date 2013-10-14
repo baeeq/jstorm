@@ -2,7 +2,7 @@ package com.alipay.dw.jstorm.ui.model;
 
 import java.io.Serializable;
 
-import com.alipay.dw.jstorm.common.stats.StatBuckets;
+import com.alibaba.jstorm.common.stats.StatBuckets;
 
 import backtype.storm.generated.TaskSummary;
 import backtype.storm.generated.WorkerSummary;

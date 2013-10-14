@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.utils;
+package com.alibaba.jstorm.utils;
 
 import java.util.Iterator;
 import java.util.LinkedList;

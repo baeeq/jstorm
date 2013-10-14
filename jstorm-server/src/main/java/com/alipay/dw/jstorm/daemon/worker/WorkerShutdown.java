@@ -8,10 +8,10 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.daemon.Shutdownable;
 
+import com.alibaba.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.callback.AsyncLoopThread;
 import com.alipay.dw.jstorm.cluster.ClusterState;
 import com.alipay.dw.jstorm.cluster.StormClusterState;
-import com.alipay.dw.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.task.ShutdownableDameon;
 import com.alipay.dw.jstorm.task.TaskShutdownDameon;
 import com.alipay.dw.jstorm.zeroMq.ISendConnection;

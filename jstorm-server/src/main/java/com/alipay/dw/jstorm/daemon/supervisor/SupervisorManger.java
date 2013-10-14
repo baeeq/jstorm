@@ -11,11 +11,11 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.daemon.Shutdownable;
 
+import com.alibaba.jstorm.utils.PathUtils;
 import com.alipay.dw.jstorm.cluster.DaemonCommon;
 import com.alipay.dw.jstorm.cluster.StormClusterState;
 import com.alipay.dw.jstorm.cluster.StormConfig;
 import com.alipay.dw.jstorm.event.EventManager;
-import com.alipay.dw.jstorm.utils.PathUtils;
 import com.alipay.dw.jstorm.utils.SmartThread;
 
 /**

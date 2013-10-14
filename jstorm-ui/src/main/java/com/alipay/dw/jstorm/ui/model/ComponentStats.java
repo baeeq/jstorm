@@ -9,8 +9,8 @@ package com.alipay.dw.jstorm.ui.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
-import com.alipay.dw.jstorm.common.stats.StaticsType;
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.stats.StaticsType;
 
 public class ComponentStats implements Serializable {
 

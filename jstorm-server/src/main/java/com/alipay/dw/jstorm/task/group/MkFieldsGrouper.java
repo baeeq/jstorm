@@ -5,7 +5,7 @@ import java.util.List;
 
 import backtype.storm.tuple.Fields;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 
 /**
  * field grouping

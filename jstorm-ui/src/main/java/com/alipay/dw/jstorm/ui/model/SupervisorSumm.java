@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import backtype.storm.generated.SupervisorSummary;
 
-import com.alipay.dw.jstorm.common.stats.StatBuckets;
+import com.alibaba.jstorm.common.stats.StatBuckets;
 
 /**
  * mainpage:SupervisorSummary

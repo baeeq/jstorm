@@ -12,11 +12,11 @@ import org.apache.log4j.Logger;
 
 import backtype.storm.Config;
 
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
 import com.alipay.dw.jstorm.cluster.StormClusterState;
-import com.alipay.dw.jstorm.common.NodePort;
 import com.alipay.dw.jstorm.task.Assignment;
-import com.alipay.dw.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.zeroMq.ISendConnection;
 import com.alipay.dw.jstorm.zeroMq.MQContext;
 

@@ -13,8 +13,8 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
-import com.alipay.dw.jstorm.utils.RandomRange;
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.utils.RandomRange;
 import com.alipay.dw.jstorm.utils.Thrift;
 
 /**

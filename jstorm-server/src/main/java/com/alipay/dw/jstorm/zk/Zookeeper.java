@@ -16,8 +16,9 @@ import org.apache.zookeeper.server.NIOServerCnxn.Factory;
 import org.apache.zookeeper.server.ZooKeeperServer;
 
 import backtype.storm.utils.Utils;
-import com.alipay.dw.jstorm.utils.PathUtils;
-import com.alipay.dw.jstorm.common.JStormUtils;
+
+import com.alibaba.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.utils.PathUtils;
 import com.netflix.curator.framework.CuratorFramework;
 import com.netflix.curator.framework.api.CuratorEvent;
 import com.netflix.curator.framework.api.CuratorEventType;

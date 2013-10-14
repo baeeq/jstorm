@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 public class IncValMerger extends RunnableCallback {
     /**

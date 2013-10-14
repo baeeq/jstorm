@@ -15,7 +15,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 
 import backtype.storm.Config;
 
-import com.alipay.dw.jstorm.utils.PathUtils;
+import com.alibaba.jstorm.utils.PathUtils;
 import com.alipay.dw.jstorm.zk.WatcherCallBack;
 import com.alipay.dw.jstorm.zk.Zookeeper;
 import com.netflix.curator.framework.CuratorFramework;

@@ -8,7 +8,7 @@ package com.alipay.dw.jstorm.ui.model;
  */
 import java.io.Serializable;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 
 public class ComponentOutput implements Serializable {
 

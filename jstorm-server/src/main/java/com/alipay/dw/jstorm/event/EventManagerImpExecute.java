@@ -2,8 +2,8 @@ package com.alipay.dw.jstorm.event;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.callback.RunnableCallback;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 public class EventManagerImpExecute implements Runnable {
     private static Logger LOG = Logger.getLogger(EventManagerImpExecute.class);

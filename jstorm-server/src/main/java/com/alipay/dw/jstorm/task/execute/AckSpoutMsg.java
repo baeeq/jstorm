@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import backtype.storm.Config;
 import backtype.storm.spout.ISpout;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.stats.CommonStatsRolling;
 import com.alipay.dw.jstorm.task.comm.TupleInfo;
 

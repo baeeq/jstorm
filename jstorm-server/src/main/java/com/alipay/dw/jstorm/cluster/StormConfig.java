@@ -11,8 +11,8 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
-import com.alipay.dw.jstorm.utils.EventSampler;
-import com.alipay.dw.jstorm.utils.PathUtils;
+import com.alibaba.jstorm.utils.EventSampler;
+import com.alibaba.jstorm.utils.PathUtils;
 
 import backtype.storm.Config;
 import backtype.storm.generated.StormTopology;

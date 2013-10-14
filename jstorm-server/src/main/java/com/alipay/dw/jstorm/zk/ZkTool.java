@@ -7,9 +7,9 @@ import org.apache.log4j.Logger;
 import backtype.storm.Config;
 import backtype.storm.utils.Utils;
 
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.cluster.DistributedClusterState;
 import com.alipay.dw.jstorm.cluster.StormConfig;
-import com.alipay.dw.jstorm.common.JStormUtils;
 
 public class ZkTool {
     private static Logger      LOG      = Logger.getLogger(ZkTool.class);

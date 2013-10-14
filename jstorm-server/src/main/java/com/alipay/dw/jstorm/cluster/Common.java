@@ -29,7 +29,7 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 import com.alipay.dw.jstorm.task.Assignment;
 import com.alipay.dw.jstorm.task.acker.Acker;
 import com.alipay.dw.jstorm.task.group.MkGrouper;

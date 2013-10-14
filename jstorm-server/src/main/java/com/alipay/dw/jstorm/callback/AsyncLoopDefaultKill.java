@@ -1,6 +1,6 @@
 package com.alipay.dw.jstorm.callback;
 
-import com.alipay.dw.jstorm.common.JStormUtils;
+import com.alibaba.jstorm.common.JStormUtils;
 
 /**
  * Killer callback

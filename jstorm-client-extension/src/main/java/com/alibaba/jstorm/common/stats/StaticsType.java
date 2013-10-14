@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.common.stats;
+package com.alibaba.jstorm.common.stats;
 
 public enum StaticsType {
     emitted,

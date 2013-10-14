@@ -1,4 +1,4 @@
-package com.alipay.dw.jstorm.utils;
+package com.alibaba.jstorm.utils;
 
 import java.io.IOException;
 import java.net.InetAddress;
